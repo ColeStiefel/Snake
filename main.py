@@ -38,6 +38,7 @@ color_one = 1
 done = False
 screen.fill(BLACK)
 print(grid)
+#The game loop undernearth will define the colors of the grid, the cords are displayed with the variable "grid". Margin, Width, and Height are defined above
 while not done:
     for row in range(14):
         for column in range(19):
@@ -49,7 +50,7 @@ while not done:
                     color_one = 1
 
 
-        clock.tick(60)
+        clock.tick(60) #60 fps
 
         pygame.display.flip()
         for event in pygame.event.get():
