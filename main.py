@@ -3,7 +3,8 @@ from pygame.locals import *
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
+GREENLIGHT = (135,234,85)
+GREENDARK = (59,227,7)
 RED = (255, 0, 0)
 
 WIDTH = 20
@@ -21,22 +22,29 @@ grid = []
 for row in range(13):
     grid.append([])
     for column in range(18):
-        grid[row].append(0)
+        grid[row].append((row, column))
 
-grid[1][5] = 1
 
+
+color_one = 1
 done = False
 screen.fill(BLACK)
+
 while not done:
     for row in range(13):
         for column in range(18):
-            color = WHITE
-            pygame.draw.rect(screen, color, [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
+                if color_one == 1:
+                    pygame.draw.rect(screen, GREENLIGHT, [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
+                    color_one = 0
+                elif color_one == 0:
+                    pygame.draw.rect(screen, GREENDARK, [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN, WIDTH, HEIGHT])
+                    color_one = 1
 
-            clock.tick(60)
 
-            pygame.display.flip()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    exit()
+        clock.tick(60)
+
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
