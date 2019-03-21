@@ -1,5 +1,7 @@
 import pygame, sys, time, random
 from pygame.locals import *
+from fruit import fruit
+#from snake import Snake
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -27,17 +29,19 @@ for row in range(14):
         grid[row].append((row, column))
 
 grid[1][5] = 1
-#FRUIT = fruit()
+FRUIT = fruit()
 
-#def spawn(FRUIT):
-    #grid = random.randint(1,234)
-    #screen.blit(FRUIT.image)
+def spawn():
+    where = random.randint(1,234)
+    screen.blit(FRUIT.image, FRUIT.rect)
+    print(where)
+    if fruit.update()
 
 
 color_one = 1
 done = False
 screen.fill(BLACK)
-print(grid)
+#print(grid)
 #The game loop undernearth will define the colors of the grid, the cords are displayed with the variable "grid". Margin, Width, and Height are defined above
 while not done:
     for row in range(14):
@@ -51,6 +55,9 @@ while not done:
 
 
         clock.tick(60) #60 fps
+
+        spawn()
+        #print(where)
 
         pygame.display.flip()
         for event in pygame.event.get():
