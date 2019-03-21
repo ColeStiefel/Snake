@@ -11,6 +11,8 @@ WIDTH = 20
 HEIGHT = 20
 MARGIN = 2
 
+
+
 clock = pygame.time.Clock()
 
 WINDOW_SIZE = [400,290] #400 px by 300 px size of the window
@@ -24,6 +26,12 @@ for row in range(13):
     for column in range(18):
         grid[row].append((row, column))
 
+grid[1][5] = 1
+#FRUIT = fruit()
+
+#def spawn(FRUIT):
+    #grid = random.randint(1,234)
+    #screen.blit(FRUIT.image)
 
 
 color_one = 1
