@@ -15,15 +15,15 @@ MARGIN = 2
 
 clock = pygame.time.Clock()
 
-WINDOW_SIZE = [400,290] #400 px by 300 px size of the window
+WINDOW_SIZE = [420,310] #400 px by 300 px size of the window
 screen = pygame.display.set_mode(WINDOW_SIZE)
 
 pygame.display.set_caption("Snake Game")  #Set the title at the top of the game
 
 grid = []
-for row in range(13):
+for row in range(14):
     grid.append([])
-    for column in range(18):
+    for column in range(19):
         grid[row].append((row, column))
 
 grid[1][5] = 1
@@ -37,10 +37,10 @@ grid[1][5] = 1
 color_one = 1
 done = False
 screen.fill(BLACK)
-
+print(grid)
 while not done:
-    for row in range(13):
-        for column in range(18):
+    for row in range(14):
+        for column in range(19):
                 if color_one == 1:
                     pygame.draw.rect(screen, GREENLIGHT, [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
                     color_one = 0
