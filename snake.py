@@ -43,27 +43,37 @@ class Snake:
         self.rect.x = head_x
         self.rect.y = head_y
 
+    #gets location of were body piece in front of it had been
+    #also saves location before movement
+    def move2bod(self,bod_x,bod_y,bodxcheck,bodycheck):
+        bodxcheck = self.rect.x
+        bodycheck = self.rect.y
+        self.rect.x = bod_x
+        self.rect.y = bod_y
+        bod_x = bodxcheck
+        bod_y = bodycheck
+
     #finds out which way each part of  the snake should be moving
     #I need a timer in the main file
     #UDLR is a variable for determining which way it is going (up,down,left,right)
     def snake_move(self,UDLR, snakes):
         if self.headbod == 'head':
             if UDLR == 'up':
-                snake_up(self,head_x,head_y)
-            if UDLR == 'down':
-                snake_down(self,head_x,head_y):
-            if UDLR == 'left':
-                snake_left(self,head_x,head_y):
-            if UDLR == 'right':
-                snake_right(self,head_x,head_y)
+                self.snake_up(head_x,head_y)
+            elif UDLR == 'down':
+                self.snake_down(head_x,head_y):
+            elif UDLR == 'left':
+                self.snake_left(head_x,head_y):
+            elif UDLR == 'right':
+                self.snake_right(head_x,head_y)
         if self.headbod == 'bod':
-            #check works as an index for the snake list
+            #check determines how far down the body the piece is
             check = 1
             for x in snakes:
                 if check == 1:
-                    get_head(self,bod_x,bod_y)
+                    self.move2head(bod_x,bod_y)
                 else:
-                    snakes[check].rect = rectsaver
+                    self.move2bod(bod_x,bod_y,bodxcheck,bodycheck)
                 check += 1
 
 
