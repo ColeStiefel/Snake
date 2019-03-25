@@ -10,26 +10,26 @@ class Snake:
         self.headbod = headbod
         self.rect = pygame.Rect(self.x,self.y,20,20)
 
-    #making the snake part go up
+    #making the snake head go up
     #headx and heady save the head's location so it can be used for the following piece
     def  snake_up(self,head_x,head__y):
         head_x = self.rect.x
         head_y = self.rect.y
         self.rect.y -= 24
 
-    #making the snake part go down
+    #making the snake head go down
     def snake_down(self,head_x,head_y):
         head_x = self.rect.x
         head_y = self.rect.y
         self.rect.y += 24
 
-    #making the snake part go left
+    #making the snake head go left
     def snake_left(self,head_x,head_y):
         head_x = self.rect.x
         head_y = self.rect.y
         self.rect.x -= 24
 
-    #making the snake part go right
+    #making the snake head go right
     def snake_right(self,head_x,head_y):
         head_x = self.rect.x
         head_y = self.rect.y
@@ -43,8 +43,7 @@ class Snake:
         self.rect.x = head_x
         self.rect.y = head_y
 
-    #gets location of were body piece in front of it had been
-    #also saves location before movement
+    #bodxcheck and bodycheck store the snake piece's location, then moves to bod_x and bod_y, and then bod_x and bod_y become bodxcheck and bodycheck
     def move2bod(self,bod_x,bod_y,bodxcheck,bodycheck):
         bodxcheck = self.rect.x
         bodycheck = self.rect.y
@@ -75,8 +74,6 @@ class Snake:
                 else:
                     self.move2bod(bod_x,bod_y,bodxcheck,bodycheck)
                 check += 1
-
-
 
     #displaying snake parts
     def update(self):
