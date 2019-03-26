@@ -1,6 +1,7 @@
 import pygame, sys, time, random
 from pygame.locals import *
 from fruit import fruit
+from snake import Snake
 #from snake import Snake
 
 BLACK = (0, 0, 0)
@@ -13,7 +14,10 @@ WIDTH = 20
 HEIGHT = 20
 MARGIN = 2
 
-
+#if error spawning first snake piece in right spot fix it here
+snake_ob = Snake( 4,6, BLUE, head)
+snakes = pygame.sprite.Group()
+snakes.add(snake_ob)
 
 clock = pygame.time.Clock()
 
@@ -64,3 +68,14 @@ while not done:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+            if event.type == K_UP:
+                UDLR = 'up'
+            if event.type == K_DOWN:
+                UDLR = 'down'
+            if event.type == K_LEFT:
+                UDLR = 'left'
+            if event.type == K_RIGHT:
+                UDLR = 'right'
+
+        snake_ob.snake_move(UDLR, snakes)
+        snake_ob.update()
