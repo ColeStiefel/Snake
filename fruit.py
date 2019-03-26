@@ -11,14 +11,14 @@ class fruit(pygame.sprite.Sprite):
         super().__init__()
 
         #takes the x and y values from the grid box that the fruit will be located in
-        coordinate_x = box.x
-        coordinate_y = box.y
+        #coordinate_x = box.x
+        #coordinate_y = box.y
 
         #does fruit stuff. image and rect/hitbox
         self.image = FRUIT
-        self.rect = pygame.Rect(coordinate_x, coordinate_y, 10,10)
+        self.rect = pygame.Rect(0,0, 10,10)
 
     def update(self, collected):
-        if collected == True:
+        if collected == True):
             self.kill()
             return snake_length + 1
