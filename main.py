@@ -7,7 +7,7 @@ from snake import Snake
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREENLIGHT = (135,234,85)
-GREENDARK = (59,227,7)
+GREENDARK = (0,100,0)
 RED = (255, 0, 0)
 
 WIDTH = 20
@@ -35,13 +35,12 @@ for row in range(14):
 grid[1][5] = 1
 FRUIT = fruit()
 
-def spawn():
-    where = random.randint(1,234)
-    screen.blit(FRUIT.image, FRUIT.rect)
-    print(where)
-    if fruit.update()
-
-
+#def spawn(FRUIT):
+    #grid = random.randint(1,234)
+    #screen.blit(FRUIT.image)
+#if (row, column) == apple:
+    #pygame.draw.rect(screen, (255, 0, 0), [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
+#apple = (0, 0)
 color_one = 1
 done = False
 screen.fill(BLACK)
