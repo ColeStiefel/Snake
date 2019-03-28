@@ -13,6 +13,8 @@ class Snake:
         self.headbod = headbod
         self.rect = pygame.Rect(x,y,20,20)
 
+    #make fnc that makes list of coordinates
+
     #making the snake head go up
     #head_x and head_y save the head's location so it can be used for the following piece
     def  snake_up(self,head_x,head__y):
