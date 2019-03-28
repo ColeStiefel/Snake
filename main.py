@@ -1,7 +1,7 @@
 import pygame, sys, time, random
 from pygame.locals import *
 from fruit import fruit
-#from snake import Snake
+from snake import Snake
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
