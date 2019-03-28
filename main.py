@@ -14,8 +14,7 @@ WIDTH = 20
 HEIGHT = 20
 MARGIN = 2
 
-UDLR = 'right'
-snake_ob = Snake(4,6,BLUE,head)
+snake_ob = Snake(4,6,WHITE,head)
 snakes = pygame.sprite.Group()
 snakes.add(snake_ob)
 UDLR = 'right'
