@@ -15,6 +15,9 @@ HEIGHT = 20
 MARGIN = 2
 
 UDLR = 'right'
+snake_ob = Snake(4,6,BLUE,head)
+snakes = pygame.sprite.Group()
+snakes.add(snake_ob)
 
 clock = pygame.time.Clock()
 
