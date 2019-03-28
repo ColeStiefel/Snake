@@ -1,12 +1,12 @@
 import pygame, sys, time, random
 from pygame.locals import *
-from fruit import fruit
+#from fruit import fruit
 #from snake import Snake
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-GREENLIGHT = (135,234,85)
-GREENDARK = (0,100,0)
+GREENLIGHT = (124,252,0)
+GREENDARK = (50,205,50)
 RED = (255, 0, 0)
 
 WIDTH = 20
@@ -29,7 +29,7 @@ for row in range(14):
         grid[row].append((row, column))
 
 grid[1][5] = 1
-FRUIT = fruit()
+#FRUIT = fruit()
 
 #def spawn(FRUIT):
     #grid = random.randint(1,234)
@@ -55,7 +55,7 @@ while not done:
 
         clock.tick(60) #60 fps
 
-        spawn()
+        #spawn()
         #print(where)
 
         pygame.display.flip()
