@@ -32,6 +32,21 @@ for row in range(14):
     for column in range(19):
         grid[row].append((row, column))
 
+good_stuff = pygame.sprite.Group()
+FRUIT = fruit()
+def add_fruit():
+    FRUIT = fruit()
+    good_stuff.add(FRUIT)
+
+
+def spawn():
+    where = random.randint(1,234)
+    screen.blit(FRUIT.image, FRUIT.rect)
+    print(where)
+    if pygame.sprite.spritecollideany(FRUIT, SNAKE) == True:
+        FRUIT.update(True)
+    elif pygame.sprite.spritecollideany(FRUIT, SNAKE) == True:
+        FRUIT.update(False)
 
 color_one = 1
 done = False
