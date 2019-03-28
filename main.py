@@ -1,7 +1,6 @@
 import pygame, sys, time, random
 from pygame.locals import *
 from fruit import fruit
-from snake import Snake
 #from snake import Snake
 
 BLACK = (0, 0, 0)
@@ -10,12 +9,13 @@ GREENLIGHT = (124,252,0)
 GREENDARK = (50,205,50)
 RED = (255, 0, 0)
 
+
 WIDTH = 20
 HEIGHT = 20
 MARGIN = 2
 
-#if error spawning first snake piece in right spot fix it here
-snake_ob = Snake( 4,6, BLUE, head)
+UDLR = 'right'
+snake_ob = Snake(4,6,BLUE,head)
 snakes = pygame.sprite.Group()
 snakes.add(snake_ob)
 UDLR = 'right'
@@ -33,7 +33,7 @@ for row in range(14):
     for column in range(19):
         grid[row].append((row, column))
 
-grid[1][5] = 1
+good_stuff = pygame.sprite.Group()
 FRUIT = fruit()
 def draw_board(color_one):
     for row in range(14):
@@ -55,12 +55,29 @@ def udlr(udlr):
     if event.type == K_RIGHT:
         UDLR = 'right'
 
+
 def spawn(FRUIT):
     grid = random.randint(1,234)
     screen.blit(FRUIT.image)
 #if (row, column) == apple:
     #pygame.draw.rect(screen, (255, 0, 0), [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
 #apple = (0, 0)
+
+def add_fruit():
+    FRUIT = fruit()
+    good_stuff.add(FRUIT)
+
+
+def spawn():
+    where = random.randint(1,234)
+    screen.blit(FRUIT.image, FRUIT.rect)
+    print(where)
+    if pygame.sprite.spritecollideany(FRUIT, SNAKE) == True:
+        FRUIT.update(True)
+    elif pygame.sprite.spritecollideany(FRUIT, SNAKE) == True:
+        FRUIT.update(False)
+
+
 color_one = 1
 done = False
 screen.fill(BLACK)
