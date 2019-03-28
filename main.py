@@ -6,14 +6,15 @@ from fruit import fruit
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREENLIGHT = (135,234,85)
-GREENDARK = (59,227,7)
+GREENDARK = (0,100,0)
 RED = (255, 0, 0)
+
 
 WIDTH = 20
 HEIGHT = 20
 MARGIN = 2
 
-
+UDLR = 'right'
 
 clock = pygame.time.Clock()
 
@@ -28,14 +29,21 @@ for row in range(14):
     for column in range(19):
         grid[row].append((row, column))
 
-grid[1][5] = 1
+good_stuff = pygame.sprite.Group()
 FRUIT = fruit()
+def add_fruit():
+    FRUIT = fruit()
+    good_stuff.add(FRUIT)
+
 
 def spawn():
     where = random.randint(1,234)
     screen.blit(FRUIT.image, FRUIT.rect)
     print(where)
-    if fruit.update()
+    if pygame.sprite.spritecollideany(FRUIT, SNAKE) == True:
+        FRUIT.update(True)
+    elif pygame.sprite.spritecollideany(FRUIT, SNAKE) == True:
+        FRUIT.update(False)
 
 
 color_one = 1
@@ -64,3 +72,11 @@ while not done:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+            if event.type == K_UP:
+                UDLR = 'up'
+            if event.type == K_DOWN:
+                UDLR = 'down'
+            if event.type == K_RIGHT:
+                UDLR = 'right'
+            if event.type == K_LEFT:
+                UDLR = 'left'

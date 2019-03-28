@@ -19,6 +19,6 @@ class fruit(pygame.sprite.Sprite):
         self.rect = pygame.Rect(0,0, 10,10)
 
     def update(self, collected):
-        if collected == True):
+        if collected == True:
             self.kill()
             return snake_length + 1
