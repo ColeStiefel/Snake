@@ -7,7 +7,7 @@ class Snake:
     def __init__(self,x,y,color,headbod):
         self.x = x
         self.y = y
-        self.color = BLUE
+        self.color = WHITE
         self.headbod = headbod
         self.rect = pygame.Rect(grid[x][y],20,20)
 
