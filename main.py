@@ -18,6 +18,7 @@ MARGIN = 2
 snake_ob = Snake( 4,6, BLUE, head)
 snakes = pygame.sprite.Group()
 snakes.add(snake_ob)
+UDLR = 'right'
 
 clock = pygame.time.Clock()
 
