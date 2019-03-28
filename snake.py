@@ -72,7 +72,7 @@ class Snake:
                         self.move2head(bod_x,bod_y)
                     else:
                         self.move2bod(bod_x,bod_y,bodxcheck,bodycheck)
-                check += 1
+                    check += 1
 
     #displaying snake parts
     def update(self):

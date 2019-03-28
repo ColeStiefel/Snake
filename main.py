@@ -1,7 +1,7 @@
 import pygame, sys, time, random
 from pygame.locals import *
 from fruit import fruit
-#from snake import Snake
+from snake import Snake
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -14,8 +14,7 @@ WIDTH = 20
 HEIGHT = 20
 MARGIN = 2
 
-UDLR = 'right'
-snake_ob = Snake(4,6,BLUE,head)
+snake_ob = Snake(4,6,WHITE,head)
 snakes = pygame.sprite.Group()
 snakes.add(snake_ob)
 UDLR = 'right'
