@@ -88,10 +88,9 @@ while not done:
 
     clock.tick(60) #60 fps
 
-        clock.tick(60) #60 fps
 
-        spawn()
-        print(where)
+    spawn()
+    print(where)
 
     pygame.display.flip()
     for event in pygame.event.get():
