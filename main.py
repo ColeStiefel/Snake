@@ -18,6 +18,7 @@ UDLR = 'right'
 snake_ob = Snake(4,6,BLUE,head)
 snakes = pygame.sprite.Group()
 snakes.add(snake_ob)
+UDLR = 'right'
 
 clock = pygame.time.Clock()
 
@@ -34,6 +35,26 @@ for row in range(14):
 
 good_stuff = pygame.sprite.Group()
 FRUIT = fruit()
+def draw_board(color_one):
+    for row in range(14):
+        for column in range(19):
+                if color_one == 1:
+                    pygame.draw.rect(screen, GREENLIGHT, [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
+                    color_one = 0
+                elif color_one == 0:
+                    pygame.draw.rect(screen, GREENDARK, [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN, WIDTH, HEIGHT])
+                    color_one = 1
+
+def udlr(udlr):
+    if event.type == K_UP:
+        UDLR = 'up'
+    if event.type == K_DOWN:
+        UDLR = 'down'
+    if event.type == K_LEFT:
+        UDLR = 'left'
+    if event.type == K_RIGHT:
+        UDLR = 'right'
+
 def add_fruit():
     FRUIT = fruit()
     good_stuff.add(FRUIT)
@@ -54,14 +75,7 @@ screen.fill(BLACK)
 #print(grid)
 #The game loop undernearth will define the colors of the grid, the cords are displayed with the variable "grid". Margin, Width, and Height are defined above
 while not done:
-    for row in range(14):
-        for column in range(19):
-                if color_one == 1:
-                    pygame.draw.rect(screen, GREENLIGHT, [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
-                    color_one = 0
-                elif color_one == 0:
-                    pygame.draw.rect(screen, GREENDARK, [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN, WIDTH, HEIGHT])
-                    color_one = 1
+    draw_board(color_one)
 
 
         clock.tick(60) #60 fps
@@ -74,11 +88,7 @@ while not done:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-            if event.type == K_UP:
-                UDLR = 'up'
-            if event.type == K_DOWN:
-                UDLR = 'down'
-            if event.type == K_RIGHT:
-                UDLR = 'right'
-            if event.type == K_LEFT:
-                UDLR = 'left'
+            udlr(udlr)
+
+        snake_ob.snake_move(UDLR, snakes)
+        snake_ob.update()
