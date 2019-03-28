@@ -1,12 +1,15 @@
 import pygame, sys, time, random
 from pygame.locals import *
+
+WHITE = (255, 255, 255)
+
 class Snake:
     #making snake parts, we need a sprite class in main.py and add them to it I think
     #headbod is whether it is a head piece or a body piece
     def __init__(self,x,y,color,headbod):
         self.x = x
         self.y = y
-        self.color = BLUE
+        self.color = WHITE
         self.headbod = headbod
         self.rect = pygame.Rect(grid[x][y],20,20)
 
