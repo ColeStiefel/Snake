@@ -5,8 +5,8 @@ from fruit import fruit
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-GREENLIGHT = (135,234,85)
-GREENDARK = (0,100,0)
+GREENLIGHT = (124,252,0)
+GREENDARK = (50,205,50)
 RED = (255, 0, 0)
 
 
@@ -80,7 +80,7 @@ while not done:
 
         clock.tick(60) #60 fps
 
-        spawn()
+        #spawn()
         #print(where)
 
         pygame.display.flip()
