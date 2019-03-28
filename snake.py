@@ -62,9 +62,9 @@ class Snake:
                 if UDLR == 'up':
                     self.snake_up(head_x,head_y)
                 elif UDLR == 'down':
-                    self.snake_down(head_x,head_y):
+                    self.snake_down(head_x,head_y)
                 elif UDLR == 'left':
-                    self.snake_left(head_x,head_y):
+                    self.snake_left(head_x,head_y)
                 elif UDLR == 'right':
                     self.snake_right(head_x,head_y)
             if self.headbod == 'bod':

@@ -69,18 +69,17 @@ screen.fill(BLACK)
 while not done:
     draw_board(color_one)
 
+    clock.tick(60) #60 fps
 
-        clock.tick(60) #60 fps
-
-        spawn()
+    spawn()
         #print(where)
 
-        pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
-            udlr(udlr)
+    pygame.display.flip()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+        udlr(udlr)
 
         snake_ob.snake_move(UDLR, snakes)
         snake_ob.update()
