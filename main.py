@@ -30,7 +30,7 @@ pygame.display.set_caption("Snake Game")  #Set the title at the top of the game
 
 grid = []
 for row in range(14):
-    grid.append([]).
+    grid.append([])
 
     for column in range(19):
         grid[row].append((row, column))
