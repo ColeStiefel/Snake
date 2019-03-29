@@ -12,6 +12,11 @@ class Snake:
         self.headbod = headbod
         self.rect = pygame.Rect(x, y, 20,20)
 
+    def bod_cords(self, snakes):
+        cords = []
+        for snake in snakes:
+            snakes.add((self.head.x,self.head.y))
+
     #making the snake head go up
     #head_x and head_y save the head's location so it can be used for the following piece
     def  snake_up(self,head_x,head__y):

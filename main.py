@@ -15,8 +15,7 @@ HEIGHT = 20
 MARGIN = 2
 
 snake_ob = Snake(4,6,WHITE,'head')
-snakes = pygame.sprite.Group()
-snakes.add(snake_ob)
+snakes = []
 UDLR = 'right'
 
 clock = pygame.time.Clock()
@@ -70,10 +69,9 @@ def add_fruit():
 def spawn():
     where = random.randint(1,234)
     screen.blit(FRUIT.image, FRUIT.rect)
-    print(where)
-    if pygame.sprite.spritecollideany(FRUIT, SNAKE) == True:
+    if pygame.sprite.spritecollideany(FRUIT, snakes) == True:
         FRUIT.update(True)
-    elif pygame.sprite.spritecollideany(FRUIT, SNAKE) == True:
+    elif pygame.sprite.spritecollideany(FRUIT, snakes) == False:
         FRUIT.update(False)
 
 
@@ -87,9 +85,7 @@ while not done:
 
     clock.tick(60) #60 fps
 
-
     spawn()
-    print(where)
 
     pygame.display.flip()
     for event in pygame.event.get():
