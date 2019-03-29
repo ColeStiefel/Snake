@@ -54,9 +54,11 @@ def udlr(udlr):
         UDLR = 'right'
 
 
-def spawn(FRUIT):
+def draw_apple():
+    global FRUIT
+    FRUIT.image = pygame.transform.scale(FRUIT.image,(20,50))
     grid = random.randint(1,234)
-    screen.blit(FRUIT.image)
+    screen.blit(FRUIT.image, FRUIT.rect)
 #if (row, column) == apple:
     #pygame.draw.rect(screen, (255, 0, 0), [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
 #apple = (0, 0)
@@ -66,7 +68,8 @@ def add_fruit():
     good_stuff.add(FRUIT)
 
 
-def spawn():
+def spawn_apple():
+    draw_apple()
     grid_x = random.randint(0,12)
     grid_y = random.randint(0,17)
     screen.blit(FRUIT.image, FRUIT.rect)
@@ -86,7 +89,7 @@ while not done:
 
     clock.tick(60) #60 fps
 
-    spawn()
+    spawn_apple()
 
     pygame.display.flip()
     for event in pygame.event.get():
