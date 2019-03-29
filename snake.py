@@ -2,6 +2,9 @@ import pygame, sys, time, random
 from pygame.locals import *
 
 WHITE = (255,255,255)
+head_x = 4
+head_y = 6
+
 class Snake:
     #making snake parts, we need a sprite class in main.py and add them to it I think
     #headbod is whether it is a head piece or a body piece
@@ -10,6 +13,9 @@ class Snake:
         self.y = y
         self.color = WHITE
         self.headbod = headbod
+        if self.headbod == 'head':
+            head_x = x
+            head_y = y
         self.rect = pygame.Rect(x, y, 20,20)
 
     def bod_cords(self, snakes):
@@ -84,6 +90,6 @@ class Snake:
                     check += 1
 
     #displaying snake parts
-    def update(self, snakes):
+    def update(self, snakes, screen):
         for snake in snakes:
-            display.draw.rect(screen, WHITE, (self.rect, 20, 20), 0)
+            pygame.draw.rect(screen, WHITE, (self.rect.x,self.rect.y, 20, 20), 0)
