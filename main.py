@@ -14,8 +14,11 @@ WIDTH = 20
 HEIGHT = 20
 MARGIN = 2
 
+head_x = 4
+head_y = 6
 snake_ob = Snake(4,6,WHITE,'head')
 snakes = []
+snakes.append(snake_ob)
 UDLR = 'right'
 
 clock = pygame.time.Clock()
