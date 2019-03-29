@@ -2,8 +2,8 @@ import pygame, sys, time, random
 from pygame.locals import *
 
 WHITE = (255,255,255)
-head_x = 4
-head_y = 6
+head_x = 2
+head_y = 2
 
 class Snake:
     #making snake parts, we need a sprite class in main.py and add them to it I think
@@ -21,7 +21,7 @@ class Snake:
     def bod_cords(self, snakes):
         cords = []
         for snake in snakes:
-            cords.add((self.head.x,self.head.y))
+            cords.append((self.head.x,self.head.y))
             print (cords)
             return cords
 

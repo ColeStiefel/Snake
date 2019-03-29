@@ -14,9 +14,9 @@ WIDTH = 20
 HEIGHT = 20
 MARGIN = 2
 
-head_x = 4
-head_y = 6
-snake_ob = Snake(4,6,WHITE,'head')
+head_x = 2
+head_y = 2
+snake_ob = Snake(2,2,WHITE,'head')
 snakes = []
 snakes.append(snake_ob)
 UDLR = 'right'
@@ -90,6 +90,8 @@ screen.fill(BLACK)
 while not done:
     draw_board(color_one)
 
+    snake_ob.bod_cords(snakes)
+
     clock.tick(60) #60 fps
 
     spawn_apple()
@@ -101,6 +103,6 @@ while not done:
             exit()
         udlr(udlr)
 
-        snake_ob.snake_move(UDLR, snakes)
-        snake_ob.update(snakes, screen)
+    snake_ob.snake_move(UDLR, snakes)
+    snake_ob.update(snakes, screen)
     pygame.display.update()
