@@ -99,4 +99,5 @@ while not done:
         udlr(udlr)
 
         snake_ob.snake_move(UDLR, snakes)
-        snake_ob.update(snakes)
+        snake_ob.update(snakes, screen)
+    pygame.display.update()

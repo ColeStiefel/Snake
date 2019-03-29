@@ -90,6 +90,6 @@ class Snake:
                     check += 1
 
     #displaying snake parts
-    def update(self, snakes):
+    def update(self, snakes, screen):
         for snake in snakes:
-            pygame.draw.rect(screen, WHITE, (self.rect, 20, 20), 0)
+            pygame.draw.rect(screen, WHITE, (self.rect.x,self.rect.y, 20, 20), 0)
