@@ -70,11 +70,12 @@ def add_fruit():
 def spawn():
     grid_x = random.randint(0,12)
     grid_y = random.randint(0,17)
+    
     screen.blit(FRUIT.image, FRUIT.rect)
     #print(where)
-    if pygame.sprite.spritecollideany(FRUIT, SNAKE) == True:
+    if pygame.sprite.spritecollideany(FRUIT, snakes) == True:
         FRUIT.update(True)
-    elif pygame.sprite.spritecollideany(FRUIT, SNAKE) == False:
+    elif pygame.sprite.spritecollideany(FRUIT, snakes) == False:
         FRUIT.update(False)
 
 
@@ -90,7 +91,6 @@ while not done:
 
 
     spawn()
-    print(where)
 
     pygame.display.flip()
     for event in pygame.event.get():
