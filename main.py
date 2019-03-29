@@ -35,7 +35,7 @@ for row in range(14):
         grid[row].append((row, column))
 
 good_stuff = pygame.sprite.Group()
-FRUIT = fruit()
+FRUIT = fruit(6, 10)
 def draw_board(color_one):
     for row in range(14):
         for column in range(19):
@@ -67,15 +67,15 @@ def draw_apple():
 #apple = (0, 0)
 
 def add_fruit():
-    FRUIT = fruit()
     good_stuff.add(FRUIT)
 
 
 def spawn_apple():
-    draw_apple()
-    grid_x = random.randint(0,12)
-    grid_y = random.randint(0,17)
-
+    x_value = random.randint(0,12)
+    y_value = random.randint(0,17)
+    grid_x = grid[x_value]
+    grid_y = grid[y_value]
+    FRUIT = fruit(grid_x, grid_y)
     screen.blit(FRUIT.image, FRUIT.rect)
     #print(where)
     if pygame.sprite.spritecollideany(FRUIT, snakes) == True:
