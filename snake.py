@@ -13,7 +13,7 @@ class Snake:
         self.rect = pygame.Rect(x, y, 20,20)
 
     #making the snake head go up
-    #headx and heady save the head's location so it can be used for the following piece
+    #head_x and head_y save the head's location so it can be used for the following piece
     def  snake_up(self,head_x,head__y):
         head_x = self.rect.x
         head_y = self.rect.y
