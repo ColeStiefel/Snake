@@ -67,7 +67,8 @@ def add_fruit():
 
 
 def spawn():
-    where = random.randint(1,234)
+    grid_x = random.randint(0,12)
+    grid_y = random.randint(0,17)
     screen.blit(FRUIT.image, FRUIT.rect)
     if pygame.sprite.spritecollideany(FRUIT, snakes) == True:
         FRUIT.update(True)
