@@ -75,7 +75,9 @@ def spawn_apple():
     draw_apple()
     grid_x = random.randint(0,12)
     grid_y = random.randint(0,17)
+
     screen.blit(FRUIT.image, FRUIT.rect)
+    #print(where)
     if pygame.sprite.spritecollideany(FRUIT, snakes) == True:
         FRUIT.update(True)
     elif pygame.sprite.spritecollideany(FRUIT, snakes) == False:
