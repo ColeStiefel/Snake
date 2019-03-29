@@ -30,7 +30,8 @@ pygame.display.set_caption("Snake Game")  #Set the title at the top of the game
 
 grid = []
 for row in range(14):
-    grid.append([])
+    grid.append([]).
+
     for column in range(19):
         grid[row].append((row, column))
 
@@ -77,7 +78,6 @@ def spawn_apple():
     grid_y = grid[y_value]
     FRUIT = fruit(grid_x, grid_y)
     screen.blit(FRUIT.image, FRUIT.rect)
-    #print(where)
     if pygame.sprite.spritecollideany(FRUIT, snakes) == True:
         FRUIT.update(True)
     elif pygame.sprite.spritecollideany(FRUIT, snakes) == False:
@@ -104,5 +104,4 @@ while not done:
         udlr(udlr)
 
         snake_ob.snake_move(UDLR, snakes)
-        snake_ob.update(snakes, screen)
-    pygame.display.update()
+        snake_ob.update(snakes)
