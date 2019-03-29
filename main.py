@@ -94,7 +94,7 @@ while not done:
 
     snake_ob.bod_cords(snakes)
 
-    clock.tick(60) #60 fps
+    clock.tick(3) #60 fps
 
     spawn_apple()
 
