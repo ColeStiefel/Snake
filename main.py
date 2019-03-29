@@ -30,7 +30,7 @@ pygame.display.set_caption("Snake Game")  #Set the title at the top of the game
 
 grid = []
 for row in range(14):
-    grid.append([]).
+    grid.append([])
 
     for column in range(19):
         grid[row].append((row, column))
@@ -92,7 +92,9 @@ screen.fill(BLACK)
 while not done:
     draw_board(color_one)
 
-    clock.tick(60) #60 fps
+    snake_ob.bod_cords(snakes)
+
+    clock.tick(3) #60 fps
 
     spawn_apple()
 

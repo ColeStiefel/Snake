@@ -21,7 +21,7 @@ class Snake:
     def bod_cords(self, snakes):
         cords = []
         for snake in snakes:
-            cords.append((self.head.x,self.head.y))
+            cords.append((self.rect.x,self.rect.y))
             print (cords)
             return cords
 
@@ -30,25 +30,25 @@ class Snake:
     def  snake_up(self,head_x,head__y):
         head_x = self.rect.x
         head_y = self.rect.y
-        self.rect.y -= 1
+        self.rect.y -= 22
 
     #making the snake head go down
     def snake_down(self,head_x,head_y):
         head_x = self.rect.x
         head_y = self.rect.y
-        self.rect.y += 1
+        self.rect.y += 22
 
     #making the snake head go left
     def snake_left(self,head_x,head_y):
         head_x = self.rect.x
         head_y = self.rect.y
-        self.rect.x -= 1
+        self.rect.x -= 22
 
     #making the snake head go right
     def snake_right(self,head_x,head_y):
         head_x = self.rect.x
         head_y = self.rect.y
-        self.rect.x += 1
+        self.rect.x += 22
 
     #gets head's previous location so first non-head piece can follow it
     #also saves its location for the piece that will come after it
