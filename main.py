@@ -96,4 +96,4 @@ while not done:
         udlr(udlr)
 
         snake_ob.snake_move(UDLR, snakes)
-        snake_ob.update()
+        snake_ob.update(snakes)

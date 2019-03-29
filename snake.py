@@ -15,7 +15,9 @@ class Snake:
     def bod_cords(self, snakes):
         cords = []
         for snake in snakes:
-            snakes.add((self.head.x,self.head.y))
+            cords.add((self.head.x,self.head.y))
+            print (cords)
+            return cords
 
     #making the snake head go up
     #head_x and head_y save the head's location so it can be used for the following piece
@@ -82,5 +84,6 @@ class Snake:
                     check += 1
 
     #displaying snake parts
-    def update(self):
-        display.draw.rect(screen, WHITE, (self.rect, 20, 20), 0)
+    def update(self, snakes):
+        for snake in snakes:
+            display.draw.rect(screen, WHITE, (self.rect, 20, 20), 0)
