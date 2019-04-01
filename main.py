@@ -74,8 +74,8 @@ def add_fruit():
 def spawn_apple():
     x_value = random.randint(0,12)
     y_value = random.randint(0,17)
-    grid_x = grid[x_value]
-    grid_y = grid[y_value]
+    grid_x = x_value
+    grid_y = y_value
     FRUIT = fruit(grid_x, grid_y)
     screen.blit(FRUIT.image, FRUIT.rect)
     if pygame.sprite.spritecollideany(FRUIT, snakes) == True:
