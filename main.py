@@ -19,7 +19,8 @@ head_y = 2
 snake_ob = Snake(2,2,WHITE,'head')
 snakes = []
 snakes.append(snake_ob)
-UDLR = 'right'
+UDLR = 'placeholder'
+last_UDLR = 'placeholder'
 
 clock = pygame.time.Clock()
 
@@ -47,16 +48,24 @@ def draw_board(color_one):
                     pygame.draw.rect(screen, GREENDARK, [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN, WIDTH, HEIGHT])
                     color_one = 1
 
-def udlr(udlr):
-    if event.type == K_UP:
-        UDLR = 'up'
-    if event.type == K_DOWN:
-        UDLR = 'down'
-    if event.type == K_LEFT:
-        UDLR = 'left'
-    if event.type == K_RIGHT:
-        UDLR = 'right'
-
+#finds out which way the snake is going and uses it for the snake.py movement fnc
+def udlr(UDLR, last_UDLR):
+    if event.key == K_UP:
+        if UDLR != 'up':
+            last_UDLR = UDLR
+            UDLR = 'up'
+    elif event.key == K_DOWN:
+        if UDLR != 'down':
+            last_UDLR = UDLR
+            UDLR = 'down'
+    elif event.key == K_LEFT:
+        if UDLR != 'left':
+            last_UDLR = UDLR
+            UDLR = 'left'
+    elif event.key == K_RIGHT:
+        if UDLR != 'right':
+            last_UDLR = UDLR
+            UDLR = 'right'
 
 def draw_apple():
     global FRUIT
@@ -103,8 +112,9 @@ while not done:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        udlr(udlr)
+        if event.type == KEYDOWN:
+            udlr(UDLR, last_UDLR)
 
-    snake_ob.snake_move(UDLR, snakes)
+    snake_ob.snake_move(UDLR, last_UDLR, snakes)
     snake_ob.update(snakes, screen)
-    pygame.display.update()  
+    pygame.display.update()

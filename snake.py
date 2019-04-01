@@ -70,18 +70,22 @@ class Snake:
     #finds out which way each part of  the snake should be moving
     #I need a timer in the main file
     #UDLR is a variable for determining which way it is going (up,down,left,right)
-    def snake_move(self, UDLR, snakes):
+    def snake_move(self, last_UDLR, UDLR, snakes):
         check = 1
         for x in snakes:
             if self.headbod == 'head':
                 if UDLR == 'up':
-                    self.snake_up(head_x,head_y)
+                    if last_UDLR != 'down':
+                        self.snake_up(head_x,head_y)
                 elif UDLR == 'down':
-                    self.snake_down(head_x,head_y)
+                    if last_UDLR != 'up':
+                        self.snake_down(head_x,head_y)
                 elif UDLR == 'left':
-                    self.snake_left(head_x,head_y)
+                    if last_UDLR != 'right':
+                        self.snake_left(head_x,head_y)
                 elif UDLR == 'right':
-                    self.snake_right(head_x,head_y)
+                    if last_UDLR != 'left':
+                        self.snake_right(head_x,head_y)
             if self.headbod == 'bod':
                     if check == 2:
                         self.move2head(bod_x,bod_y)
