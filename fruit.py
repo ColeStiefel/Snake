@@ -17,8 +17,3 @@ class fruit(pygame.sprite.Sprite):
         #does fruit stuff. image and rect/hitbox
         self.image = FRUIT
         self.rect = pygame.Rect(self.grid_x, self.grid_y, 10,10)
-
-    def update(self, collected):
-        if collected == True:
-            self.kill()
-            return snake_length + 1

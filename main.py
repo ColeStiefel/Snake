@@ -60,8 +60,7 @@ def udlr(udlr):
 
 def draw_apple():
     global FRUIT
-    FRUIT.image = pygame.transform.scale(FRUIT.image,(20,50))
-    grid = random.randint(1,234)
+    FRUIT.image = pygame.transform.scale(FRUIT.image,(15,20))
     screen.blit(FRUIT.image, FRUIT.rect)
 #if (row, column) == apple:
     #pygame.draw.rect(screen, (255, 0, 0), [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
@@ -70,18 +69,18 @@ def draw_apple():
 def add_fruit():
     good_stuff.add(FRUIT)
 
+FRUIT = fruit(8,4)
+
+def is_apple():
+    return pygame.sprite.spritecollideany(FRUIT, snakes)
+
+grid_x_values = [266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
+grid_y_values = [398, 376, 354, 332, 310, 288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
 
 def spawn_apple():
-    x_value = random.randint(0,12)
-    y_value = random.randint(0,17)
-    grid_x = x_value
-    grid_y = y_value
-    FRUIT = fruit(grid_x, grid_y)
-    screen.blit(FRUIT.image, FRUIT.rect)
-    if pygame.sprite.spritecollideany(FRUIT, snakes) == True:
-        FRUIT.update(True)
-    elif pygame.sprite.spritecollideany(FRUIT, snakes) == False:
-        FRUIT.update(False)
+    global FRUIT
+    FRUIT.grid_x = grid_x_values[random.randint(0,12)]
+    FRUIT.grid_y = grid_y_values[random.randint(0,17)]
 
 
 color_one = 1
@@ -96,7 +95,10 @@ while not done:
 
     clock.tick(3) #60 fps
 
-    spawn_apple()
+    if is_apple():
+        spawn_apple()
+
+    draw_apple()
 
     pygame.display.flip()
     for event in pygame.event.get():
@@ -107,4 +109,4 @@ while not done:
 
     snake_ob.snake_move(UDLR, snakes)
     snake_ob.update(snakes, screen)
-    pygame.display.update()  
+    pygame.display.update()
