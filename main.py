@@ -17,6 +17,8 @@ MARGIN = 2
 cords = []
 cords.append((0,0))
 snake_ob = Snake(0,0,cords)
+snakes = pygame.sprite.Group()
+snakes.add(snake_ob)
 UDLR = 'placeholder'
 last_UDLR = 'placeholder'
 
