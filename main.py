@@ -14,11 +14,9 @@ WIDTH = 20
 HEIGHT = 20
 MARGIN = 2
 
-head_x = 2
-head_y = 2
-snake_ob = Snake(2,2,WHITE,'head')
-snakes = pygame.sprite.Group()
-snakes.add(snake_ob)
+cords = []
+cords.append((0,0))
+snake_ob = Snake(0,0,cords)
 UDLR = 'placeholder'
 last_UDLR = 'placeholder'
 
@@ -54,18 +52,22 @@ def udlr(UDLR, last_UDLR):
         if UDLR != 'up':
             last_UDLR = UDLR
             UDLR = 'up'
+            snake_ob.snake_up()
     elif event.key == K_DOWN:
         if UDLR != 'down':
             last_UDLR = UDLR
             UDLR = 'down'
+            snake_ob.snake_up()
     elif event.key == K_LEFT:
         if UDLR != 'left':
             last_UDLR = UDLR
             UDLR = 'left'
+            snake_ob.snake_up()
     elif event.key == K_RIGHT:
         if UDLR != 'right':
             last_UDLR = UDLR
             UDLR = 'right'
+            snake_ob.snake_up()
 
 def draw_apple():
     global FRUIT
@@ -100,8 +102,6 @@ screen.fill(BLACK)
 while not done:
     draw_board(color_one)
 
-    snake_ob.bod_cords(snakes)
-
     clock.tick(3) #60 fps
 
     if is_apple():
@@ -115,23 +115,10 @@ while not done:
             pygame.quit()
             exit()
         if event.type == KEYDOWN:
-            if event.key == K_UP:
-                if last_UDLR != 'down':
-                    last_UDLR = UDLR
-                    UDLR = 'up'
-            if event.key == K_DOWN:
-                if last_UDLR != 'up':
-                    last_UDLR = UDLR
-                    UDLR = 'down'
-            if event.key == K_LEFT:
-                if last_UDLR != 'right':
-                    last_UDLR = UDLR
-                    UDLR = 'left'
-            if event.key == K_RIGHT:
-                if last_UDLR != 'left':
-                    last_UDLR = UDLR
-                    UDLR = 'right'
+            udlr(UDLR,last_UDLR)
 
-    snake_ob.snake_move(UDLR, last_UDLR, snakes)
-    snake_ob.update(snakes, screen)
+    check = 0
+    for x in cords:
+        pygame.draw.rect(screen,WHITE,pygame.Rect((cords[check]),20,20))
+        check += 1
     pygame.display.update()
