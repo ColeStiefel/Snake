@@ -13,9 +13,6 @@ class Snake:
         self.y = y
         self.color = WHITE
         self.headbod = headbod
-        if self.headbod == 'head':
-            head_x = x
-            head_y = y
         self.rect = pygame.Rect(x, y, 20,20)
 
     def bod_cords(self, snakes):

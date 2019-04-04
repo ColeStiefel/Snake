@@ -17,8 +17,8 @@ MARGIN = 2
 head_x = 2
 head_y = 2
 snake_ob = Snake(2,2,WHITE,'head')
-snakes = []
-snakes.append(snake_ob)
+snakes = pygame.sprite.Group()
+snakes.add(snake_ob)
 UDLR = 'placeholder'
 last_UDLR = 'placeholder'
 
