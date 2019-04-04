@@ -8,12 +8,13 @@ head_y = 2
 class Snake:
     #making snake parts, we need a sprite class in main.py and add them to it I think
     #headbod is whether it is a head piece or a body piece
-    def __init__(self,x,y,color,headbod):
-        self.x = x
-        self.y = y
-        self.color = WHITE
+    def __init__(self,head_x,head_y,headbod,cords):
+        self.head_x = x
+        self.head_y = y
         self.headbod = headbod
-        self.rect = pygame.Rect(x, y, 20,20)
+        self.len = len
+        self.cords = cords
+        self.cords.append((head_x,head_y))
 
     def bod_cords(self, snakes):
         cords = []

@@ -116,17 +116,21 @@ while not done:
             exit()
         if event.type == KEYDOWN:
             if event.key == K_UP:
-                last_UDLR = UDLR
-                UDLR = 'up'
+                if last_UDLR != 'down':
+                    last_UDLR = UDLR
+                    UDLR = 'up'
             if event.key == K_DOWN:
-                last_UDLR = UDLR
-                UDLR = 'down'
+                if last_UDLR != 'up':
+                    last_UDLR = UDLR
+                    UDLR = 'down'
             if event.key == K_LEFT:
-                last_UDLR = UDLR
-                UDLR = 'left'
+                if last_UDLR != 'right':
+                    last_UDLR = UDLR
+                    UDLR = 'left'
             if event.key == K_RIGHT:
-                last_UDLR = UDLR
-                UDLR = 'right'
+                if last_UDLR != 'left':
+                    last_UDLR = UDLR
+                    UDLR = 'right'
 
     snake_ob.snake_move(UDLR, last_UDLR, snakes)
     snake_ob.update(snakes, screen)
