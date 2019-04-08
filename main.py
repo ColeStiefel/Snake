@@ -16,9 +16,11 @@ MARGIN = 2
 
 cords = []
 cords.append((0,0))
+head_x = 0
+head_y = 0
 snake_ob = Snake(0,0,cords)
-snakes = pygame.sprite.Group()
-snakes.add(snake_ob)
+#snakes = pygame.sprite.Group()
+#snakes.add(snake_ob)
 UDLR = 'placeholder'
 last_UDLR = 'placeholder'
 
@@ -54,22 +56,22 @@ def udlr(UDLR, last_UDLR):
         if UDLR != 'up':
             last_UDLR = UDLR
             UDLR = 'up'
-            snake_ob.snake_up()
+            snake_ob.snake_up(cords,head_y)
     elif event.key == K_DOWN:
         if UDLR != 'down':
             last_UDLR = UDLR
             UDLR = 'down'
-            snake_ob.snake_up()
+            snake_ob.snake_down(cords,head_y)
     elif event.key == K_LEFT:
         if UDLR != 'left':
             last_UDLR = UDLR
             UDLR = 'left'
-            snake_ob.snake_up()
+            snake_ob.snake_left(cords,head_x)
     elif event.key == K_RIGHT:
         if UDLR != 'right':
             last_UDLR = UDLR
             UDLR = 'right'
-            snake_ob.snake_up()
+            snake_ob.snake_right(cords,head_x)
 
 def draw_apple():
     global FRUIT
@@ -85,7 +87,8 @@ def add_fruit():
 FRUIT = fruit(8,4)
 
 def is_apple():
-    return pygame.sprite.spritecollideany(FRUIT, snakes)
+    #return pygame.sprite.spritecollideany(FRUIT, snakes)
+    return (FRUIT.grid_x, FRUIT.grid_y) in snake_ob.cords
 
 grid_x_values = [266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
 grid_y_values = [398, 376, 354, 332, 310, 288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
@@ -120,7 +123,8 @@ while not done:
             udlr(UDLR,last_UDLR)
 
     check = 0
-    for x in cords:
-        pygame.draw.rect(screen,WHITE,pygame.Rect((cords[check]),20,20))
+    for coords in snake_ob.cords:
+        #pygame.draw.rect(screen,WHITE,(grid[0][0],20,20))
+        pygame.draw.rect(screen, WHITE, (MARGIN + WIDTH * coords[1] + MARGIN, (MARGIN + HEIGHT) * coords[0] + MARGIN , WIDTH, HEIGHT))
         check += 1
     pygame.display.update()
