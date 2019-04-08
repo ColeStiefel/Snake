@@ -14,11 +14,11 @@ WIDTH = 20
 HEIGHT = 20
 MARGIN = 2
 
-head_x = 2
-head_y = 2
-snake_ob = Snake(2,2,WHITE,'head')
-snakes = []
-snakes.append(snake_ob)
+cords = []
+cords.append((0,0))
+snake_ob = Snake(0,0,cords)
+snakes = pygame.sprite.Group()
+snakes.add(snake_ob)
 UDLR = 'placeholder'
 last_UDLR = 'placeholder'
 Surf = BASICFONT.render("Gameover", 1, (0,0,0))
@@ -57,18 +57,22 @@ def udlr(UDLR, last_UDLR):
         if UDLR != 'up':
             last_UDLR = UDLR
             UDLR = 'up'
+            snake_ob.snake_up()
     elif event.key == K_DOWN:
         if UDLR != 'down':
             last_UDLR = UDLR
             UDLR = 'down'
+            snake_ob.snake_up()
     elif event.key == K_LEFT:
         if UDLR != 'left':
             last_UDLR = UDLR
             UDLR = 'left'
+            snake_ob.snake_up()
     elif event.key == K_RIGHT:
         if UDLR != 'right':
             last_UDLR = UDLR
             UDLR = 'right'
+            snake_ob.snake_up()
 
 def draw_apple():
     global FRUIT
@@ -109,43 +113,25 @@ def iswall(): #still have to add the snake variable to the code
 #print(grid)
 #The game loop undernearth will define the colors of the grid, the cords are displayed with the variable "grid". Margin, Width, and Height are defined above
 while not done:
-    if not is game True:
-        draw_board(color_one)
+    draw_board(color_one)
 
-        snake_ob.bod_cords(snakes)
+    clock.tick(3) #60 fps
 
-        clock.tick(3) #60 fps
+    if is_apple():
+        spawn_apple()
 
-        if is_apple():
-            spawn_apple()
+    draw_apple()
 
-        draw_apple()
+    pygame.display.flip()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+        if event.type == KEYDOWN:
+            udlr(UDLR,last_UDLR)
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == KEYDOWN:
-                if event.key == K_UP:
-                    last_UDLR = UDLR
-                    UDLR = 'up'
-                if event.key == K_DOWN:
-                    last_UDLR = UDLR
-                    UDLR = 'down'
-                if event.key == K_LEFT:
-                    last_UDLR = UDLR
-                    UDLR = 'left'
-                if event.key == K_RIGHT:
-                    last_UDLR = UDLR
-                    UDLR = 'right'
-
-        snake_ob.snake_move(UDLR, last_UDLR, snakes)
-        snake_ob.update(snakes, screen)
-        iswall()
-    else: #this is display the gameover message at the end of the game when the snake goes in it self or goes in the wall. 
-        screen.blit(Surf,(175 ,75))
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-        pygame.display.update()
+    check = 0
+    for x in cords:
+        pygame.draw.rect(screen,WHITE,pygame.Rect((cords[check]),20,20))
+        check += 1
+    pygame.display.update()
