@@ -2,14 +2,14 @@ import pygame, sys, time, random
 from pygame.locals import *
 from fruit import fruit
 from snake import Snake
-
+#Defines all the colors used in the snake game (Such as the board, the snake, the margins, and the fruit)
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREENLIGHT = (124,252,0)
 GREENDARK = (50,205,50)
 RED = (255, 0, 0)
 
-
+#These are the dimensions of each cell on the board)
 WIDTH = 20
 HEIGHT = 20
 MARGIN = 2
@@ -23,20 +23,23 @@ snake_ob = Snake(0,0,cords)
 #snakes.add(snake_ob)
 UDLR = 'placeholder'
 last_UDLR = 'placeholder'
+Surf = BASICFONT.render("Gameover", 1, (0,0,0))
 
 clock = pygame.time.Clock()
 
-WINDOW_SIZE = [420,310] #400 px by 300 px size of the window
-screen = pygame.display.set_mode(WINDOW_SIZE)
+WINDOW_SIZE = [420,310] #420 px by 310 px size of the window
+screen = pygame.display.set_mode(WINDOW_SIZE) #Defines screen as the board size
 
 pygame.display.set_caption("Snake Game")  #Set the title at the top of the game
 
+#defines the grid for snake game later on, in order to make it easier for the snake to move
 grid = []
 for row in range(14):
     grid.append([])
 
     for column in range(19):
         grid[row].append((row, column))
+
 
 good_stuff = pygame.sprite.Group()
 FRUIT = fruit(6, 10)
@@ -99,9 +102,17 @@ def spawn_apple():
     FRUIT.grid_y = grid_y_values[random.randint(0,17)]
 
 
+#This is a function which defines the "wall" which in the end is going to make it as the snake hits the wall, the game ends
 color_one = 1
 done = False
 screen.fill(BLACK)
+game = True
+def iswall(): #still have to add the snake variable to the code
+    if 'sake' not in range (0,14) or if 'snake' not in range (0,19):
+        game = False
+
+
+
 #print(grid)
 #The game loop undernearth will define the colors of the grid, the cords are displayed with the variable "grid". Margin, Width, and Height are defined above
 while not done:
