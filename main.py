@@ -82,7 +82,7 @@ def draw_apple():
 def add_fruit():
     good_stuff.add(FRUIT)
 
-FRUIT = fruit(8,4)
+FRUIT = fruit(178,200)
 
 def is_apple():
     return pygame.sprite.spritecollideany(FRUIT, snakes)
