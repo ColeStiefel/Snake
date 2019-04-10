@@ -20,35 +20,33 @@ class Snake():
         #head_coord[0]
         #head_coords[1]
 
-    def bod_cords(self, snakes):
-        return cords
+    def bod_cords(self):
+        return self.cords
 
     #making the snake head go up
     #adding the cordinate above the snake and removing the last piece
-    def  snake_up(self,cords,head_y):
-        self.cords.remove(cords[len(cords)-1])
-        self.cords.append((head_x,head_y-1))
-        head_y -= 1
+    def  snake_up(self):
+        self.cords.remove(self.cords[len(self.cords)-1])
+        self.cords.append((self.head_x,self.head_y-1))
+        self.head_y -= 1
 
     #making the snake head go down
-    def snake_down(self,cords,head_y):
-        self.cords.remove(cords[len(cords)-1])
-        self.cords.append((head_x,head_y+1))
-        head_y += 1
+    def snake_down(self):
+        self.cords.remove(self.cords[len(self.cords)-1])
+        self.cords.append((self.head_x,self.head_y+1))
+        self.head_y += 1
 
     #making the snake head go left
-    def snake_left(self,cords,head_x):
-        self.cords.remove(cords[len(cords)-1])
-        self.cords.append((head_x-1,head_y))
-        head_x -= 1
+    def snake_left(self):
+        self.cords.remove(self.cords[len(self.cords)-1])
+        self.cords.append((self.head_x-1,self.head_y))
+        self.head_x -= 1
 
     #making the snake head go right
-    def snake_right(self,cords,head_x):
-        self.cords.remove(cords[len(cords)-1])
-        print (cords)
-        self.cords.append((head_x+1,head_y))
-        print (cords)
-        head_x += 1
+    def snake_right(self):
+        self.cords.remove(self.cords[len(self.cords)-1])
+        self.cords.append((self.head_x+1,self.head_y))
+        self.head_x += 1
 
     #gets head's previous location so first non-head piece can follow it
     #also saves its location for the piece that will come after it

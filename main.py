@@ -22,8 +22,8 @@ snake_ob = Snake(0,0,cords)
 #snakes = pygame.sprite.Group()
 #snakes.add(snake_ob)
 UDLR = 'placeholder'
-last_UDLR = 'placeholder'
-Surf = BASICFONT.render("Gameover", 1, (0,0,0))
+movecheck = 0
+#Surf = BASICFONT.render("Gameover", 1, (0,0,0))
 
 clock = pygame.time.Clock()
 
@@ -54,27 +54,37 @@ def draw_board(color_one):
                     color_one = 1
 
 #finds out which way the snake is going and uses it for the snake.py movement fnc
-def udlr(UDLR, last_UDLR):
+def udlr(UDLR, movecheck):
     if event.key == K_UP:
         if UDLR != 'up':
-            last_UDLR = UDLR
+            movecheck = 1
             UDLR = 'up'
-            snake_ob.snake_up(cords,head_y)
+            snake_ob.snake_up()
     elif event.key == K_DOWN:
         if UDLR != 'down':
-            last_UDLR = UDLR
+            movecheck = 1
             UDLR = 'down'
-            snake_ob.snake_down(cords,head_y)
+            snake_ob.snake_down()
     elif event.key == K_LEFT:
         if UDLR != 'left':
-            last_UDLR = UDLR
+            movecheck = 1
             UDLR = 'left'
-            snake_ob.snake_left(cords,head_x)
+            snake_ob.snake_left()
     elif event.key == K_RIGHT:
         if UDLR != 'right':
-            last_UDLR = UDLR
+            movecheck = 1
             UDLR = 'right'
-            snake_ob.snake_right(cords,head_x)
+            snake_ob.snake_right()
+
+def noudlrmove():
+    if UDLR == 'up':
+        snake_ob.snake_up()
+    if UDLR == 'down':
+        snake_ob.snake_down()
+    if UDLR == 'left':
+        snake_ob.snake_left()
+    if UDLR == 'right':
+        snake_ob.snake_right()
 
 def draw_apple():
     global FRUIT
@@ -107,15 +117,16 @@ color_one = 1
 done = False
 screen.fill(BLACK)
 game = True
-def iswall(): #still have to add the snake variable to the code
+"""def iswall(): #still have to add the snake variable to the code
     if 'sake' not in range (0,14) or if 'snake' not in range (0,19):
-        game = False
+        game = False"""
 
 
 
 #print(grid)
 #The game loop undernearth will define the colors of the grid, the cords are displayed with the variable "grid". Margin, Width, and Height are defined above
 while not done:
+    movecheck = 0
     draw_board(color_one)
 
     clock.tick(3) #60 fps
@@ -131,11 +142,13 @@ while not done:
             pygame.quit()
             exit()
         if event.type == KEYDOWN:
-            udlr(UDLR,last_UDLR)
+            udlr(UDLR,movecheck)
 
+    if movecheck == 0:
+        noudlrmove()
     check = 0
     for coords in snake_ob.cords:
         #pygame.draw.rect(screen,WHITE,(grid[0][0],20,20))
-        pygame.draw.rect(screen, WHITE, (MARGIN + WIDTH * coords[1] + MARGIN, (MARGIN + HEIGHT) * coords[0] + MARGIN , WIDTH, HEIGHT))
+        pygame.draw.rect(screen, WHITE, [(MARGIN + WIDTH) * coords[0] + MARGIN, (MARGIN + HEIGHT) * coords[1] + MARGIN , WIDTH, HEIGHT])
         check += 1
     pygame.display.update()
