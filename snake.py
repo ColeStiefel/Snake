@@ -3,6 +3,9 @@ from pygame.locals import *
 
 WHITE = (255,255,255)
 
+head_x = 0
+head_y = 0
+
 class Snake():
     #making snake parts, we need a sprite class in main.py and add them to it I think
     #headbod is whether it is a head piece or a body piece
@@ -22,24 +25,30 @@ class Snake():
 
     #making the snake head go up
     #adding the cordinate above the snake and removing the last piece
-    def  snake_up(self,cords):
+    def  snake_up(self,cords,head_y):
+        self.cords.remove(cords[len(cords)-1])
         self.cords.append((head_x,head_y-1))
-        #remove
+        head_y -= 1
 
     #making the snake head go down
-    def snake_down(self,cords):
+    def snake_down(self,cords,head_y):
+        self.cords.remove(cords[len(cords)-1])
         self.cords.append((head_x,head_y+1))
-        #remove
+        head_y += 1
 
     #making the snake head go left
-    def snake_left(self,cords):
+    def snake_left(self,cords,head_x):
+        self.cords.remove(cords[len(cords)-1])
         self.cords.append((head_x-1,head_y))
-        #remove
+        head_x -= 1
 
     #making the snake head go right
-    def snake_right(self,cords):
+    def snake_right(self,cords,head_x):
+        self.cords.remove(cords[len(cords)-1])
+        print (cords)
         self.cords.append((head_x+1,head_y))
-        #remove
+        print (cords)
+        head_x += 1
 
     #gets head's previous location so first non-head piece can follow it
     #also saves its location for the piece that will come after it
