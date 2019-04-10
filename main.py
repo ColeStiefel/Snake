@@ -22,6 +22,7 @@ snake_ob = Snake(0,0,cords)
 #snakes = pygame.sprite.Group()
 #snakes.add(snake_ob)
 UDLR = 'placeholder'
+last_UDLR = UDLR
 movecheck = 0
 #Surf = BASICFONT.render("Gameover", 1, (0,0,0))
 
@@ -54,7 +55,7 @@ def draw_board(color_one):
                     color_one = 1
 
 #finds out which way the snake is going and uses it for the snake.py movement fnc
-def udlr(UDLR, movecheck):
+def udlr(UDLR, last_UDLR):
     if event.key == K_UP:
         if UDLR != 'up':
             movecheck = 1
@@ -75,15 +76,16 @@ def udlr(UDLR, movecheck):
             movecheck = 1
             UDLR = 'right'
             snake_ob.snake_right()
+    last_UDLR = UDLR
 
 def noudlrmove():
-    if UDLR == 'up':
+    if last_UDLR == 'up':
         snake_ob.snake_up()
-    if UDLR == 'down':
+    if last_UDLR == 'down':
         snake_ob.snake_down()
-    if UDLR == 'left':
+    if last_UDLR == 'left':
         snake_ob.snake_left()
-    if UDLR == 'right':
+    if last_UDLR == 'right':
         snake_ob.snake_right()
 
 def draw_apple():
@@ -142,8 +144,29 @@ while not done:
             pygame.quit()
             exit()
         if event.type == KEYDOWN:
-            udlr(UDLR,movecheck)
+            if event.key == K_UP:
+                if UDLR != 'up':
+                    movecheck = 1
+                    UDLR = 'up'
+                    snake_ob.snake_up()
+            elif event.key == K_DOWN:
+                if UDLR != 'down':
+                    movecheck = 1
+                    UDLR = 'down'
+                    snake_ob.snake_down()
+            elif event.key == K_LEFT:
+                if UDLR != 'left':
+                    movecheck = 1
+                    UDLR = 'left'
+                    snake_ob.snake_left()
+            elif event.key == K_RIGHT:
+                if UDLR != 'right':
+                    movecheck = 1
+                    UDLR = 'right'
+                    snake_ob.snake_right()
+            last_UDLR = UDLR
 
+    print (movecheck)
     if movecheck == 0:
         noudlrmove()
     check = 0
