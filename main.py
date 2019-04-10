@@ -105,7 +105,7 @@ done = False
 screen.fill(BLACK)
 game = True
 def iswall(): #still have to add the snake variable to the code
-    if 'sake' not in range (0,14) or if 'snake' not in range (0,19):
+    if snake_ob.cords[0][0] not in range (0,14) or snake_ob.cords[0][1] not in range (0,19):
         game = False
 
 
