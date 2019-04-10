@@ -57,22 +57,22 @@ def draw_board(color_one):
 #finds out which way the snake is going and uses it for the snake.py movement fnc
 def udlr(UDLR, last_UDLR):
     if event.key == K_UP:
-        if UDLR != 'up':
+        if UDLR != 'down':
             movecheck = 1
             UDLR = 'up'
             snake_ob.snake_up()
     elif event.key == K_DOWN:
-        if UDLR != 'down':
+        if UDLR != 'up':
             movecheck = 1
             UDLR = 'down'
             snake_ob.snake_down()
     elif event.key == K_LEFT:
-        if UDLR != 'left':
+        if UDLR != 'right':
             movecheck = 1
             UDLR = 'left'
             snake_ob.snake_left()
     elif event.key == K_RIGHT:
-        if UDLR != 'right':
+        if UDLR != 'left':
             movecheck = 1
             UDLR = 'right'
             snake_ob.snake_right()
@@ -119,15 +119,10 @@ color_one = 1
 done = False
 screen.fill(BLACK)
 game = True
-<<<<<<< HEAD
 def iswall(): #still have to add the snake variable to the code
     if snake_ob.cords[0][0] not in range (0,14) or snake_ob.cords[0][1] not in range (0,19):
         game = False
-=======
-"""def iswall(): #still have to add the snake variable to the code
-    if 'sake' not in range (0,14) or if 'snake' not in range (0,19):
-        game = False"""
->>>>>>> 9fe14ae09534c5ed1a098e60f798b9b7af60d7e9
+
 
 
 
@@ -151,28 +146,27 @@ while not done:
             exit()
         if event.type == KEYDOWN:
             if event.key == K_UP:
-                if UDLR != 'up':
+                if UDLR != 'down':
                     movecheck = 1
                     UDLR = 'up'
                     snake_ob.snake_up()
             elif event.key == K_DOWN:
-                if UDLR != 'down':
+                if UDLR != 'up':
                     movecheck = 1
                     UDLR = 'down'
                     snake_ob.snake_down()
             elif event.key == K_LEFT:
-                if UDLR != 'left':
+                if UDLR != 'right':
                     movecheck = 1
                     UDLR = 'left'
                     snake_ob.snake_left()
             elif event.key == K_RIGHT:
-                if UDLR != 'right':
+                if UDLR != 'left':
                     movecheck = 1
                     UDLR = 'right'
                     snake_ob.snake_right()
             last_UDLR = UDLR
 
-    print (movecheck)
     if movecheck == 0:
         noudlrmove()
     check = 0
