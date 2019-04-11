@@ -22,6 +22,7 @@ snake_ob = Snake(0,0,cords)
 #snakes = pygame.sprite.Group()
 #snakes.add(snake_ob)
 UDLR = 'placeholder'
+last_UDLR = UDLR
 movecheck = 0
 #Surf = BASICFONT.render("Gameover", 1, (0,0,0))
 
@@ -54,36 +55,37 @@ def draw_board(color_one):
                     color_one = 1
 
 #finds out which way the snake is going and uses it for the snake.py movement fnc
-def udlr(UDLR, movecheck):
+def udlr(UDLR, last_UDLR):
     if event.key == K_UP:
-        if UDLR != 'up':
+        if UDLR != 'down':
             movecheck = 1
             UDLR = 'up'
             snake_ob.snake_up()
     elif event.key == K_DOWN:
-        if UDLR != 'down':
+        if UDLR != 'up':
             movecheck = 1
             UDLR = 'down'
             snake_ob.snake_down()
     elif event.key == K_LEFT:
-        if UDLR != 'left':
+        if UDLR != 'right':
             movecheck = 1
             UDLR = 'left'
             snake_ob.snake_left()
     elif event.key == K_RIGHT:
-        if UDLR != 'right':
+        if UDLR != 'left':
             movecheck = 1
             UDLR = 'right'
             snake_ob.snake_right()
+    last_UDLR = UDLR
 
 def noudlrmove():
-    if UDLR == 'up':
+    if last_UDLR == 'up':
         snake_ob.snake_up()
-    if UDLR == 'down':
+    if last_UDLR == 'down':
         snake_ob.snake_down()
-    if UDLR == 'left':
+    if last_UDLR == 'left':
         snake_ob.snake_left()
-    if UDLR == 'right':
+    if last_UDLR == 'right':
         snake_ob.snake_right()
 
 def draw_apple():
@@ -121,15 +123,10 @@ color_one = 1
 done = False
 screen.fill(BLACK)
 game = True
-#<<<<<<< HEAD
 def iswall(): #still have to add the snake variable to the code
     if snake_ob.cords[0][0] not in range (0,14) or snake_ob.cords[0][1] not in range (0,19):
         game = False
-#=======
-"""def iswall(): #still have to add the snake variable to the code
-    if 'sake' not in range (0,14) or if 'snake' not in range (0,19):
-        game = False"""
-#>>>>>>> 9fe14ae09534c5ed1a098e60f798b9b7af60d7e9
+
 
 
 
@@ -152,7 +149,27 @@ while not done:
             pygame.quit()
             exit()
         if event.type == KEYDOWN:
-            udlr(UDLR,movecheck)
+            if event.key == K_UP:
+                if UDLR != 'down':
+                    movecheck = 1
+                    UDLR = 'up'
+                    snake_ob.snake_up()
+            elif event.key == K_DOWN:
+                if UDLR != 'up':
+                    movecheck = 1
+                    UDLR = 'down'
+                    snake_ob.snake_down()
+            elif event.key == K_LEFT:
+                if UDLR != 'right':
+                    movecheck = 1
+                    UDLR = 'left'
+                    snake_ob.snake_left()
+            elif event.key == K_RIGHT:
+                if UDLR != 'left':
+                    movecheck = 1
+                    UDLR = 'right'
+                    snake_ob.snake_right()
+            last_UDLR = UDLR
 
     if movecheck == 0:
         noudlrmove()
