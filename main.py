@@ -27,6 +27,8 @@ UDLR = 'placeholder'
 last_UDLR = 'placeholder'
 #movecheck determines if the snake's direction was changed in a given iteration, so it continues to move without a key being pressed
 movecheck = 0
+#checks if an apple has been eaten so it determines if a piece should be removed in that iteration
+removecheck = 0
 #Surf = BASICFONT.render("Gameover", 1, (0,0,0))
 
 clock = pygame.time.Clock()
@@ -61,13 +63,13 @@ def draw_board(color_one):
 #makes the snake continue moving in the same direction when there has not been any change in direction given
 def noudlrmove():
     if last_UDLR == 'up':
-        snake_ob.snake_up()
+        snake_ob.snake_up(removecheck)
     if last_UDLR == 'down':
-        snake_ob.snake_down()
+        snake_ob.snake_down(removecheck)
     if last_UDLR == 'left':
-        snake_ob.snake_left()
+        snake_ob.snake_left(removecheck)
     if last_UDLR == 'right':
-        snake_ob.snake_right()
+        snake_ob.snake_right(removecheck)
 
 def draw_apple():
     global FRUIT
@@ -113,12 +115,14 @@ spawn_apple()
 #The game loop undernearth will define the colors of the grid, the cords are displayed with the variable "grid". Margin, Width, and Height are defined above
 while not done:
     movecheck = 0
+    removecheck = 0
     draw_board(color_one)
 
     clock.tick(5) #5 fps
 
     if is_apple() == True:
         spawn_apple()
+        removecheck = 1
 
     draw_apple()
 
@@ -142,17 +146,17 @@ while not done:
                 if UDLR != 'up' and UDLR !=  'down':
                     movecheck = 1
                     UDLR = 'down'
-                    snake_ob.snake_down()
+                    snake_ob.snake_down(removecheck)
             elif event.key == K_LEFT:
                 if UDLR != 'right' and UDLR != 'left':
                     movecheck = 1
                     UDLR = 'left'
-                    snake_ob.snake_left()
+                    snake_ob.snake_left(removecheck)
             elif event.key == K_RIGHT:
                 if UDLR != 'left' and UDLR != 'right':
                     movecheck = 1
                     UDLR = 'right'
-                    snake_ob.snake_right()
+                    snake_ob.snake_right(removecheck)
             #determines which way it is going so it can continue to go that way if no arrow key is hit on the next iteration
             last_UDLR = UDLR
 

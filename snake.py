@@ -20,25 +20,29 @@ class Snake():
 
     #making the snake head go up
     #adding the cordinate above the snake and removing the last piece
-    def  snake_up(self):
-        self.cords.remove(self.cords[len(self.cords)-1])
+    def  snake_up(self,removecheck):
+        if removecheck == 0:
+            self.cords.remove(self.cords[len(self.cords)-1])
         self.cords.append((self.head_x,self.head_y-1))
         self.head_y -= 1
 
     #making the snake head go down
-    def snake_down(self):
-        self.cords.remove(self.cords[len(self.cords)-1])
+    def snake_down(self,removecheck):
+        if removecheck == 0:
+            self.cords.remove(self.cords[len(self.cords)-1])
         self.cords.append((self.head_x,self.head_y+1))
         self.head_y += 1
 
     #making the snake head go left
-    def snake_left(self):
-        self.cords.remove(self.cords[len(self.cords)-1])
+    def snake_left(self,removecheck):
+        if removecheck == 0:
+            self.cords.remove(self.cords[len(self.cords)-1])
         self.cords.append((self.head_x-1,self.head_y))
         self.head_x -= 1
 
     #making the snake head go right
-    def snake_right(self):
-        self.cords.remove(self.cords[len(self.cords)-1])
+    def snake_right(self,removecheck):
+        if removecheck == 0:
+            self.cords.remove(self.cords[len(self.cords)-1])
         self.cords.append((self.head_x+1,self.head_y))
         self.head_x += 1
