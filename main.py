@@ -44,6 +44,7 @@ for row in range(14):
 
 good_stuff = pygame.sprite.Group()
 FRUIT = fruit(6, 10)
+
 def draw_board(color_one):
     for row in range(14):
         for column in range(19):
@@ -99,7 +100,7 @@ def draw_apple():
 def add_fruit():
     good_stuff.add(FRUIT)
 
-FRUIT = fruit(178,200)
+FRUIT = fruit(9,10)
 
 def is_apple():
     #return pygame.sprite.spritecollideany(FRUIT, snakes)
@@ -112,6 +113,8 @@ def spawn_apple():
     global FRUIT
     FRUIT.grid_x = grid_x_values[random.randint(0,12)]
     FRUIT.grid_y = grid_y_values[random.randint(0,17)]
+    FRUIT.rect.x = (MARGIN + WIDTH) * FRUIT.grid_x + MARGIN
+    FRUIT.rect.y = (MARGIN + HEIGHT) * FRUIT.grid_y + MARGIN
 
 
 #This is a function which defines the "wall" which in the end is going to make it as the snake hits the wall, the game ends
@@ -133,7 +136,7 @@ while not done:
     draw_board(color_one)
 
     clock.tick(3) #60 fps
-
+    print(is_apple())
     if is_apple():
         spawn_apple()
 
