@@ -115,7 +115,7 @@ while not done:
     movecheck = 0
     draw_board(color_one)
 
-    clock.tick(3) #60 fps
+    clock.tick(5) #5 fps
 
     if is_apple() == True:
         spawn_apple()
