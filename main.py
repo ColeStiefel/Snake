@@ -103,11 +103,15 @@ def add_fruit():
 FRUIT = fruit(9,10)
 
 def is_apple():
+    if pygame.sprite.spritecollideany(FRUIT, cords):
+        return True
+    else:
+        return False
     #return pygame.sprite.spritecollideany(FRUIT, snakes)
-    return (FRUIT.grid_x, FRUIT.grid_y) in snake_ob.cords
+    #return (FRUIT.grid_x, FRUIT.grid_y) in snake_ob.cords
 
-grid_x_values = [266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
-grid_y_values = [398, 376, 354, 332, 310, 288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
+grid_y_values = [288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
+grid_x_values = [398, 376, 354, 332, 310, 288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
 
 def spawn_apple():
     global FRUIT
@@ -136,8 +140,8 @@ while not done:
     draw_board(color_one)
 
     clock.tick(3) #60 fps
-    print(is_apple())
-    if is_apple():
+
+    if is_apple() == True:
         spawn_apple()
 
     draw_apple()
