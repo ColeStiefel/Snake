@@ -97,14 +97,18 @@ def draw_apple():
 def add_fruit():
     good_stuff.add(FRUIT)
 
-FRUIT = fruit(178,200)
+FRUIT = fruit(244,134)
 
 def is_apple():
+    if pygame.sprite.spritecollideany(FRUIT, cords):
+        return True
+    else:
+        return False
     #return pygame.sprite.spritecollideany(FRUIT, snakes)
-    return (FRUIT.grid_x, FRUIT.grid_y) in snake_ob.cords
+    #return (FRUIT.grid_x, FRUIT.grid_y) in snake_ob.cords
 
-grid_x_values = [266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
-grid_y_values = [398, 376, 354, 332, 310, 288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
+grid_y_values = [288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
+grid_x_values = [398, 376, 354, 332, 310, 288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
 
 def spawn_apple():
     global FRUIT
@@ -117,15 +121,15 @@ color_one = 1
 done = False
 screen.fill(BLACK)
 game = True
-<<<<<<< HEAD
+#<<<<<<< HEAD
 def iswall(): #still have to add the snake variable to the code
     if snake_ob.cords[0][0] not in range (0,14) or snake_ob.cords[0][1] not in range (0,19):
         game = False
-=======
+#=======
 """def iswall(): #still have to add the snake variable to the code
     if 'sake' not in range (0,14) or if 'snake' not in range (0,19):
         game = False"""
->>>>>>> 9fe14ae09534c5ed1a098e60f798b9b7af60d7e9
+#>>>>>>> 9fe14ae09534c5ed1a098e60f798b9b7af60d7e9
 
 
 
@@ -137,7 +141,7 @@ while not done:
 
     clock.tick(3) #60 fps
 
-    if is_apple():
+    if is_apple() == True:
         spawn_apple()
 
     draw_apple()
