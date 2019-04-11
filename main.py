@@ -23,7 +23,7 @@ head_y = 0
 snake_ob = Snake(0,0,cords)
 #UDLR determines if the snake is going Up, Down, Left, or Right
 UDLR = 'placeholder'
-#last_UDLR keeps track of the last direction the snake was going, so it cannot go back on itself
+#last_UDLR keeps track of the last direction the snake was going, so it can continue to go in that direction
 last_UDLR = 'placeholder'
 #movecheck determines if the snake's direction was changed in a given iteration, so it continues to move without a key being pressed
 movecheck = 0
@@ -153,6 +153,7 @@ while not done:
                     movecheck = 1
                     UDLR = 'right'
                     snake_ob.snake_right()
+            #determines which way it is going so it can continue to go that way if no arrow key is hit on the next iteration
             last_UDLR = UDLR
 
     #if it did not move, make it continue in that direction
