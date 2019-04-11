@@ -25,7 +25,7 @@ head_y = 0
 snake_ob = Snake(0,0,cords)
 #UDLR determines if the snake is going Up, Down, Left, or Right
 UDLR = 'placeholder'
-#last_UDLR keeps track of the last direction the snake was going, so it cannot go back on itself
+#last_UDLR keeps track of the last direction the snake was going, so it can continue to go in that direction
 last_UDLR = 'placeholder'
 #movecheck determines if the snake's direction was changed in a given iteration, so it continues to move without a key being pressed
 movecheck = 0
@@ -64,13 +64,13 @@ def draw_board(color_one):
 #makes the snake continue moving in the same direction when there has not been any change in direction given
 def noudlrmove():
     if last_UDLR == 'up':
-        snake_ob.snake_up()
+        snake_ob.snake_up(removecheck)
     if last_UDLR == 'down':
-        snake_ob.snake_down()
+        snake_ob.snake_down(removecheck)
     if last_UDLR == 'left':
-        snake_ob.snake_left()
+        snake_ob.snake_left(removecheck)
     if last_UDLR == 'right':
-        snake_ob.snake_right()
+        snake_ob.snake_right(removecheck)
 
 def draw_apple():
     global FRUIT
