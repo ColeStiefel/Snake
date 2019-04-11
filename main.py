@@ -99,23 +99,23 @@ def draw_apple():
 def add_fruit():
     good_stuff.add(FRUIT)
 
-FRUIT = fruit(244,134)
+#FRUIT = fruit(244,134)
+FRUIT = fruit(9,10)
 
 def is_apple():
-    if pygame.sprite.spritecollideany(FRUIT, cords):
-        return True
-    else:
-        return False
-    #return pygame.sprite.spritecollideany(FRUIT, snakes)
-    #return (FRUIT.grid_x, FRUIT.grid_y) in snake_ob.cords
+    return (FRUIT.grid_x, FRUIT.grid_y) in snake_ob.cords
 
-grid_y_values = [288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
-grid_x_values = [398, 376, 354, 332, 310, 288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
+#grid_y_values = [288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
+#grid_x_values = [398, 376, 354, 332, 310, 288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
+
+#[(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN]
 
 def spawn_apple():
     global FRUIT
-    FRUIT.grid_x = grid_x_values[random.randint(0,12)]
-    FRUIT.grid_y = grid_y_values[random.randint(0,17)]
+    FRUIT.grid_x = random.randint(0,18)
+    FRUIT.grid_y = random.randint(0,13)
+    FRUIT.rect.x = (MARGIN + WIDTH) * FRUIT.grid_x + MARGIN
+    FRUIT.rect.y = (MARGIN + WIDTH) * FRUIT.grid_y + MARGIN
 
 
 #This is a function which defines the "wall" which in the end is going to make it as the snake hits the wall, the game ends
@@ -127,8 +127,7 @@ def iswall(): #still have to add the snake variable to the code
     if snake_ob.cords[0][0] not in range (0,14) or snake_ob.cords[0][1] not in range (0,19):
         game = False
 
-
-
+spawn_apple()
 
 #print(grid)
 #The game loop undernearth will define the colors of the grid, the cords are displayed with the variable "grid". Margin, Width, and Height are defined above
