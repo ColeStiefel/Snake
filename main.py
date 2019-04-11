@@ -2,6 +2,8 @@ import pygame, sys, time, random
 from pygame.locals import *
 from fruit import fruit
 from snake import Snake
+
+pygame.init()
 #Defines all the colors used in the snake game (Such as the board, the snake, the margins, and the fruit)
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -27,7 +29,8 @@ UDLR = 'placeholder'
 last_UDLR = 'placeholder'
 #movecheck determines if the snake's direction was changed in a given iteration, so it continues to move without a key being pressed
 movecheck = 0
-#Surf = BASICFONT.render("Gameover", 1, (0,0,0))
+BASICFONT = pygame.font.Font('freesansbold.ttf', 25)
+Surf = BASICFONT.render("Gameover", 1, (0,0,0))
 
 clock = pygame.time.Clock()
 
@@ -104,61 +107,70 @@ done = False
 screen.fill(BLACK)
 game = True
 def iswall(): #still have to add the snake variable to the code
-    if snake_ob.cords[0][0] not in range (0,14) or snake_ob.cords[0][1] not in range (0,19):
+    global game
+    if snake_ob.cords[0][0] not in range (0,19) or snake_ob.cords[0][1] not in range (0,14):
         game = False
 
 spawn_apple()
 
 #print(grid)
 #The game loop undernearth will define the colors of the grid, the cords are displayed with the variable "grid". Margin, Width, and Height are defined above
-while not done:
-    movecheck = 0
-    draw_board(color_one)
+while True:
+    if game == True:
+        movecheck = 0
+        draw_board(color_one)
 
-    clock.tick(3) #60 fps
+        clock.tick(3) #60 fps
 
-    if is_apple() == True:
-        spawn_apple()
+        if is_apple() == True:
+            spawn_apple()
 
-    draw_apple()
+        draw_apple()
 
-    pygame.display.flip()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            exit()
-        if event.type == KEYDOWN:
-            #if the up key is pressed
-            if event.key == K_UP:
-                #making sure it is not going down (it cannot being going one way and then immediately go the other direction)
-                if UDLR != 'down':
-                    #showing that a change in direction did happen, so it should not execute noudlrmove()
-                    movecheck = 1
-                    #showing that it is now going up
-                    UDLR = 'up'
-                    #making it go up
-                    snake_ob.snake_up()
-            elif event.key == K_DOWN:
-                if UDLR != 'up':
-                    movecheck = 1
-                    UDLR = 'down'
-                    snake_ob.snake_down()
-            elif event.key == K_LEFT:
-                if UDLR != 'right':
-                    movecheck = 1
-                    UDLR = 'left'
-                    snake_ob.snake_left()
-            elif event.key == K_RIGHT:
-                if UDLR != 'left':
-                    movecheck = 1
-                    UDLR = 'right'
-                    snake_ob.snake_right()
-            last_UDLR = UDLR
-
-    #if it did not move, make it continue in that direction
-    if movecheck == 0:
-        noudlrmove()
-    #drawing all the coordinates in cords
-    for coords in snake_ob.cords:
-        pygame.draw.rect(screen, WHITE, [(MARGIN + WIDTH) * coords[0] + MARGIN, (MARGIN + HEIGHT) * coords[1] + MARGIN , WIDTH, HEIGHT])
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == KEYDOWN:
+                #if the up key is pressed
+                if event.key == K_UP:
+                    #making sure it is not going down (it cannot being going one way and then immediately go the other direction)
+                    if UDLR != 'down':
+                        #showing that a change in direction did happen, so it should not execute noudlrmove()
+                        movecheck = 1
+                        #showing that it is now going up
+                        UDLR = 'up'
+                        #making it go up
+                        snake_ob.snake_up()
+                elif event.key == K_DOWN:
+                    if UDLR != 'up':
+                        movecheck = 1
+                        UDLR = 'down'
+                        snake_ob.snake_down()
+                elif event.key == K_LEFT:
+                    if UDLR != 'right':
+                        movecheck = 1
+                        UDLR = 'left'
+                        snake_ob.snake_left()
+                elif event.key == K_RIGHT:
+                    if UDLR != 'left':
+                        movecheck = 1
+                        UDLR = 'right'
+                        snake_ob.snake_right()
+                last_UDLR = UDLR
+        iswall()
+        print (game)
+        #if it did not move, make it continue in that direction
+        if movecheck == 0:
+            noudlrmove()
+        #drawing all the coordinates in cords
+        for coords in snake_ob.cords:
+            pygame.draw.rect(screen, WHITE, [(MARGIN + WIDTH) * coords[0] + MARGIN, (MARGIN + HEIGHT) * coords[1] + MARGIN , WIDTH, HEIGHT])
+    else:
+        screen.blit(Surf,(175 ,75))
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
     pygame.display.update()
