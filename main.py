@@ -130,8 +130,8 @@ while not done:
         if event.type == KEYDOWN:
             #if the up key is pressed
             if event.key == K_UP:
-                #making sure it is not going down (it cannot being going one way and then immediately go the other direction)
-                if UDLR != 'down':
+                #making sure it is not going down (it cannot being going one way and then immediately go the other direction) or up (so you can't go further)
+                if UDLR != 'down' and UDLR != 'up':
                     #showing that a change in direction did happen, so it should not execute noudlrmove()
                     movecheck = 1
                     #showing that it is now going up
@@ -139,17 +139,17 @@ while not done:
                     #making it go up
                     snake_ob.snake_up()
             elif event.key == K_DOWN:
-                if UDLR != 'up':
+                if UDLR != 'up' and UDLR !=  'down':
                     movecheck = 1
                     UDLR = 'down'
                     snake_ob.snake_down()
             elif event.key == K_LEFT:
-                if UDLR != 'right':
+                if UDLR != 'right' and UDLR != 'left':
                     movecheck = 1
                     UDLR = 'left'
                     snake_ob.snake_left()
             elif event.key == K_RIGHT:
-                if UDLR != 'left':
+                if UDLR != 'left' and UDLR != 'right':
                     movecheck = 1
                     UDLR = 'right'
                     snake_ob.snake_right()
