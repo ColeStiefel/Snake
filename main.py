@@ -65,6 +65,7 @@ def draw_board(color_one):
 
 #makes the snake continue moving in the same direction when there has not been any change in direction given
 def noudlrmove():
+    global removecheck
     if last_UDLR == 'up':
         snake_ob.snake_up(removecheck)
     if last_UDLR == 'down':
@@ -73,6 +74,7 @@ def noudlrmove():
         snake_ob.snake_left(removecheck)
     if last_UDLR == 'right':
         snake_ob.snake_right(removecheck)
+    print(snake_ob.cords)
 
 def draw_apple():
     global FRUIT
@@ -146,28 +148,28 @@ while True:
                         #showing that it is now going up
                         UDLR = 'up'
                         #making it go up
-                        snake_ob.snake_up(removecheck)
+                        #snake_ob.snake_up(removecheck)
                 elif event.key == K_DOWN:
                     if UDLR != 'up':
                         movecheck = 1
                         UDLR = 'down'
-                        snake_ob.snake_down(removecheck)
+                        #snake_ob.snake_down(removecheck)
                 elif event.key == K_LEFT:
                     if UDLR != 'right':
                         movecheck = 1
                         UDLR = 'left'
-                        snake_ob.snake_left(removecheck)
+                        #snake_ob.snake_left(removecheck)
                 elif event.key == K_RIGHT:
                     if UDLR != 'left':
                         movecheck = 1
                         UDLR = 'right'
-                        snake_ob.snake_right(removecheck)
+                        #snake_ob.snake_right(removecheck)
                 last_UDLR = UDLR
         iswall()
         print (game)
         #if it did not move, make it continue in that direction
-        if movecheck == 0:
-            noudlrmove()
+        #if movecheck == 0:
+        noudlrmove()
         #drawing all the coordinates in cords
         for coords in snake_ob.cords:
             pygame.draw.rect(screen, WHITE, [(MARGIN + WIDTH) * coords[0] + MARGIN, (MARGIN + HEIGHT) * coords[1] + MARGIN , WIDTH, HEIGHT])
