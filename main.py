@@ -29,6 +29,8 @@ UDLR = 'placeholder'
 last_UDLR = 'placeholder'
 #movecheck determines if the snake's direction was changed in a given iteration, so it continues to move without a key being pressed
 movecheck = 0
+#sees if it ate a fruit on a given iteration, indicating whether or not to remove the last coordinate from the list, which is what causes the snake to grow
+removecheck = 0
 BASICFONT = pygame.font.Font('freesansbold.ttf', 25)
 Surf = BASICFONT.render("Gameover", 1, (0,0,0))
 
@@ -118,12 +120,14 @@ spawn_apple()
 while True:
     if game == True:
         movecheck = 0
+        removecheck = 0
         draw_board(color_one)
 
-        clock.tick(3) #60 fps
+        clock.tick(5) #5 fps
 
         if is_apple() == True:
             spawn_apple()
+            removecheck = 1
 
         draw_apple()
 
@@ -142,22 +146,22 @@ while True:
                         #showing that it is now going up
                         UDLR = 'up'
                         #making it go up
-                        snake_ob.snake_up()
+                        snake_ob.snake_up(removecheck)
                 elif event.key == K_DOWN:
                     if UDLR != 'up':
                         movecheck = 1
                         UDLR = 'down'
-                        snake_ob.snake_down()
+                        snake_ob.snake_down(removecheck)
                 elif event.key == K_LEFT:
                     if UDLR != 'right':
                         movecheck = 1
                         UDLR = 'left'
-                        snake_ob.snake_left()
+                        snake_ob.snake_left(removecheck)
                 elif event.key == K_RIGHT:
                     if UDLR != 'left':
                         movecheck = 1
                         UDLR = 'right'
-                        snake_ob.snake_right()
+                        snake_ob.snake_right(removecheck)
                 last_UDLR = UDLR
         iswall()
         print (game)
