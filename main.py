@@ -160,7 +160,6 @@ while True:
                         snake_ob.snake_right()
                 last_UDLR = UDLR
         iswall()
-        print (game)
         #if it did not move, make it continue in that direction
         if movecheck == 0:
             noudlrmove()
