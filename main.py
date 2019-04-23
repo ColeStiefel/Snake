@@ -31,7 +31,7 @@ last_UDLR = 'placeholder'
 movecheck = 0
 #sees if it ate a fruit on a given iteration, indicating whether or not to remove the last coordinate from the list, which is what causes the snake to grow
 removecheck = 0
-BASICFONT = pygame.font.Font('freesansbold.ttf', 25)
+BASICFONT = pygame.font.Font('freesansbold.ttf', 50)
 Surf = BASICFONT.render("Gameover", 1, (0,0,0))
 
 clock = pygame.time.Clock()
@@ -115,6 +115,12 @@ def iswall(): #still have to add the snake variable to the code
     if snake_ob.cords[0][0] not in range (0,19) or snake_ob.cords[0][1] not in range (0,14):
         game = False
 
+def insnake():
+    global game
+    for x in range (1,len(cords)):
+        if snake_ob.cords[x] == snake_ob.cords[0]:
+            game = False
+
 spawn_apple()
 
 #print(grid)
@@ -166,6 +172,7 @@ while True:
                         #snake_ob.snake_right(removecheck)
                 last_UDLR = UDLR
         iswall()
+        insnake()
         #if it did not move, make it continue in that direction
         #if movecheck == 0:
         noudlrmove()
@@ -173,7 +180,7 @@ while True:
         for coords in snake_ob.cords:
             pygame.draw.rect(screen, WHITE, [(MARGIN + WIDTH) * coords[0] + MARGIN, (MARGIN + HEIGHT) * coords[1] + MARGIN , WIDTH, HEIGHT])
     else:
-        screen.blit(Surf,(175 ,75))
+        screen.blit(Surf,(88 ,110))
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
