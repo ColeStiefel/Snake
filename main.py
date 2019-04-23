@@ -167,7 +167,7 @@ while True:
         for coords in snake_ob.cords:
             pygame.draw.rect(screen, WHITE, [(MARGIN + WIDTH) * coords[0] + MARGIN, (MARGIN + HEIGHT) * coords[1] + MARGIN , WIDTH, HEIGHT])
     else:
-        screen.blit(Surf,(88 ,110))
+        screen.blit(Surf,(88 ,110))  #displays the gameover screen
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
