@@ -80,9 +80,6 @@ def draw_apple():
     global FRUIT
     FRUIT.image = pygame.transform.scale(FRUIT.image,(15,20))
     screen.blit(FRUIT.image, FRUIT.rect)
-#if (row, column) == apple:
-    #pygame.draw.rect(screen, (255, 0, 0), [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
-#apple = (0, 0)
 
 def add_fruit():
     good_stuff.add(FRUIT)
@@ -91,11 +88,6 @@ FRUIT = fruit(9,10)
 
 def is_apple():
     return (FRUIT.grid_x, FRUIT.grid_y) in snake_ob.cords
-
-#grid_y_values = [288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
-#grid_x_values = [398, 376, 354, 332, 310, 288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
-
-#[(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN]
 
 def spawn_apple():
     global FRUIT
@@ -180,7 +172,7 @@ while True:
         for coords in snake_ob.cords:
             pygame.draw.rect(screen, WHITE, [(MARGIN + WIDTH) * coords[0] + MARGIN, (MARGIN + HEIGHT) * coords[1] + MARGIN , WIDTH, HEIGHT])
     else:
-        screen.blit(Surf,(88 ,110))
+        screen.blit(Surf,(88 ,110))  #displays the gameover screen
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
