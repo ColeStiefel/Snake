@@ -80,9 +80,6 @@ def draw_apple():
     global FRUIT
     FRUIT.image = pygame.transform.scale(FRUIT.image,(15,20))
     screen.blit(FRUIT.image, FRUIT.rect)
-#if (row, column) == apple:
-    #pygame.draw.rect(screen, (255, 0, 0), [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
-#apple = (0, 0)
 
 def add_fruit():
     good_stuff.add(FRUIT)
@@ -91,11 +88,6 @@ FRUIT = fruit(9,10)
 
 def is_apple():
     return (FRUIT.grid_x, FRUIT.grid_y) in snake_ob.cords
-
-#grid_y_values = [288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
-#grid_x_values = [398, 376, 354, 332, 310, 288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
-
-#[(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN]
 
 def spawn_apple():
     global FRUIT
@@ -123,16 +115,17 @@ def insnake():
 
 spawn_apple()
 
-#print(grid)
 #The game loop undernearth will define the colors of the grid, the cords are displayed with the variable "grid". Margin, Width, and Height are defined above
 while True:
     if game == True:
+        #defining these variables for each iteration
         movecheck = 0
         removecheck = 0
         draw_board(color_one)
 
         clock.tick(5) #5 fps
 
+        #has an apple been eater? If so spawn a new apple and change the variable so the snake will grow
         if is_apple() == True:
             spawn_apple()
             removecheck = 1
@@ -153,28 +146,22 @@ while True:
                         movecheck = 1
                         #showing that it is now going up
                         UDLR = 'up'
-                        #making it go up
-                        #snake_ob.snake_up(removecheck)
                 elif event.key == K_DOWN:
                     if UDLR != 'up':
                         movecheck = 1
                         UDLR = 'down'
-                        #snake_ob.snake_down(removecheck)
                 elif event.key == K_LEFT:
                     if UDLR != 'right':
                         movecheck = 1
                         UDLR = 'left'
-                        #snake_ob.snake_left(removecheck)
                 elif event.key == K_RIGHT:
                     if UDLR != 'left':
                         movecheck = 1
                         UDLR = 'right'
-                        #snake_ob.snake_right(removecheck)
                 last_UDLR = UDLR
         iswall()
         insnake()
         #if it did not move, make it continue in that direction
-        #if movecheck == 0:
         noudlrmove()
         #drawing all the coordinates in cords
         for coords in snake_ob.cords:
