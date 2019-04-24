@@ -29,7 +29,9 @@ UDLR = 'placeholder'
 last_UDLR = 'placeholder'
 #movecheck determines if the snake's direction was changed in a given iteration, so it continues to move without a key being pressed
 movecheck = 0
-BASICFONT = pygame.font.Font('freesansbold.ttf', 25)
+#sees if it ate a fruit on a given iteration, indicating whether or not to remove the last coordinate from the list, which is what causes the snake to grow
+removecheck = 0
+BASICFONT = pygame.font.Font('freesansbold.ttf', 50)
 Surf = BASICFONT.render("Gameover", 1, (0,0,0))
 
 clock = pygame.time.Clock()
@@ -63,6 +65,7 @@ def draw_board(color_one):
 
 #makes the snake continue moving in the same direction when there has not been any change in direction given
 def noudlrmove():
+    global removecheck
     if last_UDLR == 'up':
         snake_ob.snake_up(removecheck)
     if last_UDLR == 'down':
@@ -71,12 +74,16 @@ def noudlrmove():
         snake_ob.snake_left(removecheck)
     if last_UDLR == 'right':
         snake_ob.snake_right(removecheck)
+    print(snake_ob.cords)
 
 #draws the apple where the rect says it is and makes the appple scale to the right size
 def draw_apple():
     global FRUIT
     FRUIT.image = pygame.transform.scale(FRUIT.image,(15,20))
     screen.blit(FRUIT.image, FRUIT.rect)
+
+def add_fruit():
+    good_stuff.add(FRUIT)
 
 #makes the fruit object
 FRUIT = fruit(9,10)
@@ -85,12 +92,6 @@ FRUIT = fruit(9,10)
 def is_apple():
     return (FRUIT.grid_x, FRUIT.grid_y) in snake_ob.cords
 
-#grid_y_values = [288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
-#grid_x_values = [398, 376, 354, 332, 310, 288, 266, 244, 222, 200, 178, 156, 134, 112, 90, 68, 46, 24, 2]
-
-#[(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN]
-
-#generates the random spawning and updates the fruit. It also adjusts the cords to move to the right pixel in the  grid
 def spawn_apple():
     global FRUIT
     FRUIT.grid_x = random.randint(0,18)
@@ -109,21 +110,28 @@ def iswall(): #still have to add the snake variable to the code
     if snake_ob.cords[0][0] not in range (0,19) or snake_ob.cords[0][1] not in range (0,14):
         game = False
 
-#creates a randomly spawned apple
+def insnake():
+    global game
+    for x in range (1,len(cords)):
+        if snake_ob.cords[x] == snake_ob.cords[0]:
+            game = False
+
 spawn_apple()
 
-#print(grid)
 #The game loop undernearth will define the colors of the grid, the cords are displayed with the variable "grid". Margin, Width, and Height are defined above
 while True:
     if game == True:
+        #defining these variables for each iteration
         movecheck = 0
+        removecheck = 0
         draw_board(color_one)
 
-        clock.tick(3) #60 fps
+        clock.tick(5) #5 fps
 
-        #chekcs for the collision and spawns the apple in another place if it is true
+        #has an apple been eater? If so spawn a new apple and change the variable so the snake will grow
         if is_apple() == True:
             spawn_apple()
+            removecheck = 1
 
         #draws the new apple
         draw_apple()
@@ -142,34 +150,28 @@ while True:
                         movecheck = 1
                         #showing that it is now going up
                         UDLR = 'up'
-                        #making it go up
-                        snake_ob.snake_up()
                 elif event.key == K_DOWN:
                     if UDLR != 'up':
                         movecheck = 1
                         UDLR = 'down'
-                        snake_ob.snake_down()
                 elif event.key == K_LEFT:
                     if UDLR != 'right':
                         movecheck = 1
                         UDLR = 'left'
-                        snake_ob.snake_left()
                 elif event.key == K_RIGHT:
                     if UDLR != 'left':
                         movecheck = 1
                         UDLR = 'right'
-                        snake_ob.snake_right()
                 last_UDLR = UDLR
         iswall()
-        print (game)
+        insnake()
         #if it did not move, make it continue in that direction
-        if movecheck == 0:
-            noudlrmove()
+        noudlrmove()
         #drawing all the coordinates in cords
         for coords in snake_ob.cords:
             pygame.draw.rect(screen, WHITE, [(MARGIN + WIDTH) * coords[0] + MARGIN, (MARGIN + HEIGHT) * coords[1] + MARGIN , WIDTH, HEIGHT])
     else:
-        screen.blit(Surf,(175 ,75))
+        screen.blit(Surf,(88 ,110))  #displays the gameover screen
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
