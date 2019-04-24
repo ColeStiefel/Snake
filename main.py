@@ -72,19 +72,16 @@ def noudlrmove():
     if last_UDLR == 'right':
         snake_ob.snake_right(removecheck)
 
+#draws the apple where the rect says it is and makes the appple scale to the right size
 def draw_apple():
     global FRUIT
     FRUIT.image = pygame.transform.scale(FRUIT.image,(15,20))
     screen.blit(FRUIT.image, FRUIT.rect)
-#if (row, column) == apple:
-    #pygame.draw.rect(screen, (255, 0, 0), [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN , WIDTH, HEIGHT])
-#apple = (0, 0)
 
-def add_fruit():
-    good_stuff.add(FRUIT)
-
+#makes the fruit object
 FRUIT = fruit(9,10)
 
+#checks for collisions
 def is_apple():
     return (FRUIT.grid_x, FRUIT.grid_y) in snake_ob.cords
 
@@ -93,6 +90,7 @@ def is_apple():
 
 #[(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN]
 
+#generates the random spawning and updates the fruit. It also adjusts the cords to move to the right pixel in the  grid
 def spawn_apple():
     global FRUIT
     FRUIT.grid_x = random.randint(0,18)
@@ -111,6 +109,7 @@ def iswall(): #still have to add the snake variable to the code
     if snake_ob.cords[0][0] not in range (0,19) or snake_ob.cords[0][1] not in range (0,14):
         game = False
 
+#creates a randomly spawned apple
 spawn_apple()
 
 #print(grid)
@@ -122,9 +121,11 @@ while True:
 
         clock.tick(3) #60 fps
 
+        #chekcs for the collision and spawns the apple in another place if it is true
         if is_apple() == True:
             spawn_apple()
 
+        #draws the new apple
         draw_apple()
 
         pygame.display.flip()
