@@ -74,7 +74,6 @@ def noudlrmove():
         snake_ob.snake_left(removecheck)
     if last_UDLR == 'right':
         snake_ob.snake_right(removecheck)
-    print(snake_ob.cords)
 
 def draw_apple():
     global FRUIT
